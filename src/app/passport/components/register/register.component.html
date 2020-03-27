@@ -17,11 +17,8 @@
     <ion-button   expand="block"  color="success" style="height:30px" *ngIf="!flag" >
       获取中,{{timelimit}}s
     </ion-button>
-  </ion-item>
-  <div style="margin:8px auto;">
-    <a [routerLink]="['/register']"  style="float:right;width:20%;text-align: center;text-decoration: none;">注册</a>
-  </div>
+  </ion-item> 
 </ion-list>
-<ion-button (click)="login(2)" color="primary" expand="block" style="height:40px;width:60%;margin:40px auto;font-size:20px"  shape="round">
+<ion-button (click)="usermsg()" color="primary" expand="block" style="height:40px;width:60%;margin:40px auto;font-size:20px"  shape="round">
   下&nbsp;&nbsp;一&nbsp;&nbsp;步
 </ion-button>

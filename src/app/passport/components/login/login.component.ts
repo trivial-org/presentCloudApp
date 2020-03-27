@@ -1,5 +1,6 @@
 import { Component, OnInit,ChangeDetectionStrategy, ChangeDetectorRef,OnDestroy,Input,Output,EventEmitter} from '@angular/core';
 
+import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   }  
   public timelimit:any=60;
   public flag:any = true;
-  constructor(public ref : ChangeDetectorRef) { }
+  constructor(public ref : ChangeDetectorRef,public http:HttpClient) { }
 
   ngOnInit() {
   }
@@ -33,17 +34,16 @@ export class LoginComponent implements OnInit {
     this.outer.emit(3);
   }
   //登录
-  login(type:any){
-    if(type==1)
-    {
-      this.user.type=1;
-    }else{
-      this.user.type=2;
-    }
+  login(){ 
     console.log(this.user)
+    //提交
   }
   // 获取验证码
   get_check_code() {
+    var api="http://localhost:8080/test";
+    this.http.get(api).subscribe(response=>{
+      console.log(response)
+    })
     console.log('获取验证码'+this.user.phone)
     //倒计时
     this.flag=false;

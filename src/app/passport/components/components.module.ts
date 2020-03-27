@@ -8,11 +8,13 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { GetPassComponent } from './get-pass/get-pass.component';
 
+import { RegUsermsgComponent } from './reg-usermsg/reg-usermsg.component';
+
 
 
 @NgModule({
-  declarations: [LoginComponent,RegisterComponent,GetPassComponent],
+  declarations: [LoginComponent,RegisterComponent,GetPassComponent,RegUsermsgComponent],
   imports: [ CommonModule, FormsModule, IonicModule,RouterModule],
-  exports:[LoginComponent,RegisterComponent,GetPassComponent]
+  exports:[LoginComponent,RegisterComponent,GetPassComponent,RegUsermsgComponent]
 })
 export class ComponentsModule { }

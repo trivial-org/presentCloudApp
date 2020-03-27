@@ -24,6 +24,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  usermsg()
+  {
+    //提交数据并返回
+
+    //跳转到填写信息页面
+    this.outer.emit(4);
+  }
 
   register(){
     this.outer.emit(2);

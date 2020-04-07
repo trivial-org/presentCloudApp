@@ -16,13 +16,17 @@
     <div *ngSwitchCase="'tab1'">
       <ion-list class="inp" style="margin-top:30px auto;">
         <ion-item padding >
-          <ion-label>手机号</ion-label>
-          <ion-input type="text" placeholder="请输入手机号" [(ngModel)]="user.phone"></ion-input>
+          <ion-label>账号</ion-label>
+          <ion-input type="text" placeholder="请输入账号" [(ngModel)]="user.userName"></ion-input>
         </ion-item> 
         <ion-item>
           <ion-label>密码</ion-label>
           <ion-input type="password" placeholder="请输入密码" [(ngModel)]="user.password"></ion-input>
         </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="请输入验证码" [(ngModel)]="user.verificationCode"></ion-input>
+          <img id="vericode" (click)="newcode()"/>
+        </ion-item> 
         <div style="margin:8px auto;">
           <a (click)="forgetPass()" style="float:left;width:20%;text-align: center;text-decoration: none;" >忘记密码</a>
           <a (click)="register()"  style="float:right;width:20%;text-align: center;text-decoration: none;">注册</a>
@@ -36,8 +40,8 @@
     <div *ngSwitchCase="'tab2'">
       <ion-list class="inp" style="margin-top:30px auto;">
         <ion-item padding >
-          <ion-label>手机号</ion-label>
-          <ion-input type="text" placeholder="请输入手机号" [(ngModel)]="user.phone"></ion-input>
+          <ion-label>账号</ion-label>
+          <ion-input type="text" placeholder="请输入账号" [(ngModel)]="user.phone"></ion-input>
         </ion-item>
         <ion-item>
           <ion-input type="password" placeholder="请输入验证码" [(ngModel)]="user.checkcode"></ion-input>

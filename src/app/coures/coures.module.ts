@@ -6,15 +6,20 @@ import { IonicModule } from '@ionic/angular';
 
 import { CouresPageRoutingModule } from './coures-routing.module';
 
+import { RouterModule } from '@angular/router';
 import { CouresPage } from './coures.page';
-
+import {ComponentsModule} from'./components/components.module' 
+ 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
+    RouterModule,
     CouresPageRoutingModule
   ],
-  declarations: [CouresPage]
+  declarations: [CouresPage],
+  entryComponents:[]
 })
 export class CouresPageModule {}

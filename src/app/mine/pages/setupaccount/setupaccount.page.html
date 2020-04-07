@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title  style=text-align:center>账户设置</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button size="large" fill="clear" color="success" expand="full">
+    <ion-thumbnail slot="start">
+      <img src="assets/p.png">
+    </ion-thumbnail>
+  </ion-button>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label>姓名</ion-label>
+      <ion-input type="text" slot="end" placeholder="用户名" [(ngModel)]="user.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>昵称</ion-label>
+      <ion-input type="text" slot="end" placeholder="昵称" [(ngModel)]="user.name"></ion-input>
+    </ion-item>
+    <ion-item-divider>
+      <ion-label> 选择性别 </ion-label>
+    </ion-item-divider>
+      <ion-radio-group [(ngModel)]="user.gender">
+          <ion-item >
+              <ion-label>男</ion-label>
+              <ion-radio value='1' slot="end" expand="full"></ion-radio>
+          </ion-item>
+          <ion-item>
+              <ion-label>女</ion-label>
+              <ion-radio value='2' slot="end" expand="full"></ion-radio>
+          </ion-item>
+      </ion-radio-group>
+    <ion-item-divider>
+      <ion-label> 选择身份 </ion-label>
+    </ion-item-divider>
+    <ion-radio-group [(ngModel)]="user.gender">
+      <ion-item >
+          <ion-label>教师</ion-label>
+          <ion-radio value='1' slot="end" expand="full"></ion-radio>
+      </ion-item>
+      <ion-item>
+          <ion-label>学生</ion-label>
+          <ion-radio value='2' slot="end" expand="full"></ion-radio>
+      </ion-item>
+  </ion-radio-group>
+  <ion-item-divider>
+    <ion-label> </ion-label>
+  </ion-item-divider>
+  <ion-item>
+    <ion-label>学号/工号</ion-label>
+    <ion-input type="text" slot="end" placeholder="123456789" [(ngModel)]="user.ID"></ion-input>
+  </ion-item>
+  </ion-list>
+  <ion-button color="primary" expand="block" [routerLink]="[ '/mine' ]"> 保存 </ion-button>
+</ion-content>

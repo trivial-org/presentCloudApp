@@ -1,6 +1,7 @@
 import { Component, OnInit,ChangeDetectionStrategy, ChangeDetectorRef,OnDestroy,Input,Output,EventEmitter} from '@angular/core';
 
-import {HttpClient} from '@angular/common/http';
+import { NavController , NavParams } from '@ionic/angular';
+import { HttpserviceService } from '../../../service/httpservice.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,17 +13,25 @@ export class LoginComponent implements OnInit {
  
   public timer:any;
   public tab = 'tab1';  
+  public verimage=this.httpclient.ip+"/verification/code"; 
+  public loginapi='/signin'
+  public nums:any=1; 
   public user:any={
-    type:'',
-    phone:'',
+    userName:'',
     password:'',
-    checkCode:''
+    verificationCode:''
   }  
   public timelimit:any=60;
-  public flag:any = true;
-  constructor(public ref : ChangeDetectorRef,public http:HttpClient) { }
+  public flag:any = true; 
+  constructor(public ref : ChangeDetectorRef,public httpclient:HttpserviceService,public navCtrl: NavController ) { }
 
   ngOnInit() {
+    console.log(this.verimage)
+   
+  }
+  //不能再onInit里面初始化  因为img实在ngif判断后加入页面的
+  ngAfterViewInit(){
+    document.getElementById('vericode').src='http://47.95.120.250:8080/verification/code'
   }
 
 
@@ -34,16 +43,25 @@ export class LoginComponent implements OnInit {
     this.outer.emit(3);
   }
   //登录
-  login(){ 
-    console.log(this.user)
+  login(type:any){ 
+    //验证提交的数据
+
+    //提交数据
+    this.httpclient.upData(this.loginapi,this.user).then((response)=>{
+      //判断返回结果
+      //对跳转  附带参数
+      this.navCtrl.navigateForward('/tabs/coures');
+      //错 根据返回信息进行提示
+    console.log(response);
+    })
     //提交
   }
   // 获取验证码
   get_check_code() {
-    var api="http://localhost:8080/test";
-    this.http.get(api).subscribe(response=>{
-      console.log(response)
-    })
+    // var api="http://localhost:8080/test";
+    // this.httpclient.get(api).then((response)=>{
+    //   console.log(response)
+    // })
     console.log('获取验证码'+this.user.phone)
     //倒计时
     this.flag=false;
@@ -61,6 +79,11 @@ export class LoginComponent implements OnInit {
     // });
   }
 
+  newcode()
+  {  
+    document.getElementById('vericode').src=this.verimage+'?'+this.nums;
+    this.nums++;
+  }
   //清空数据
   clear(){
     this.user.phone='';

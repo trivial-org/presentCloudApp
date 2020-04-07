@@ -17,6 +17,14 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./passport/passport.module').then( m => m.PassportPageModule)
+  },
+  {
+    path: 'coursemanage',
+    loadChildren: () => import('./coursemanage/coursemanage.module').then( m => m.CoursemanagePageModule)
+  },
+  {
+    path: 'teachercourse',
+    loadChildren: () => import('./teachercourse/teachercourse.module').then( m => m.TeachercoursePageModule)
   }
 ];
 @NgModule({

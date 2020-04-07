@@ -7,6 +7,26 @@ const routes: Routes = [
   {
     path: '',
     component: MinePage
+  },
+  {
+    path: 'setupaccount',
+    loadChildren: () => import('./pages/setupaccount/setupaccount.module').then( m => m.SetupaccountPageModule)
+  },
+  {
+    path: 'setting',
+    loadChildren: () => import('./pages/setting/setting.module').then( m => m.SettingPageModule)
+  },
+  {
+    path: 'aboutus',
+    loadChildren: () => import('./pages/aboutus/aboutus.module').then( m => m.AboutusPageModule)
+  },
+  {
+    path: 'score',
+    loadChildren: () => import('./pages/score/score.module').then( m => m.ScorePageModule)
+  },
+  {
+    path: 'record',
+    loadChildren: () => import('./pages/record/record.module').then( m => m.RecordPageModule)
   }
 ];
 

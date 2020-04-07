@@ -1,4 +1,5 @@
 import { Component, OnInit,ChangeDetectionStrategy, ChangeDetectorRef,OnDestroy,Input,Output,EventEmitter} from '@angular/core';
+import { HttpserviceService } from '../../../service/httpservice.service';
 
 @Component({
   selector: 'app-register',
@@ -9,21 +10,34 @@ export class RegisterComponent implements OnInit {
 
   @Output() public outer = new EventEmitter<any>();
  
+  public verimage=this.httpclient.ip+"/verification/code";
+  public mailcodeapi="/verification/mail?email=";
+  public signupapi="/signup";
   public timer:any;
   public tab = 'tab1';  
+  public mail:any='';
   public user:any={
-    type:'',
-    phone:'',
+    userName:'',
     password:'',
-    checkCode:''
+    email:'',
+    mailVerificationCode:'',
+    verificationCode:''
   }  
   public timelimit:any=60;
   public flag:any = true;
-  constructor(public ref : ChangeDetectorRef) { }
+  constructor(public ref : ChangeDetectorRef,public httpclient:HttpserviceService) { }
 
   ngOnInit() {
+    console.log(this.verimage)
+    document.getElementById('vericode').src=this.verimage;
   }
-
+  public nums:any=1;//['1','2','3','4','5','6','7','8','9','a','b','c']
+ 
+  newcode()
+  {  
+    document.getElementById('vericode').src=this.verimage+'?'+this.nums;
+    this.nums++;
+  }
   usermsg()
   {
     //提交数据并返回
@@ -33,7 +47,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    this.outer.emit(2);
+    //提交数据 注册
+    console.log(this.user)
+    this.httpclient.upData(this.signupapi,this.user).then((response)=>{
+      console.log(response)
+      //注册完去登录  这里没提示 后面再优化体验
+      //判断成功才可以跳去登录
+      this.outer.emit(1);
+    })
   }
   forgetPass()
   {
@@ -51,7 +72,12 @@ export class RegisterComponent implements OnInit {
   }
   // 获取验证码
   get_check_code() {
-    console.log('获取验证码'+this.user.phone)
+    this.httpclient.get(this.mailcodeapi+this.user['email']).then((response)=>{
+       
+    
+    //let cookie =response.headers['Set-Cookie']
+    console.log(response)
+    })
     //倒计时
     this.flag=false;
     this.timer = setInterval(()=>{

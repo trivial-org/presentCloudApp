@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>签到</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="dao==0">
+  <ion-card style="text-align: center;">
+    <ion-item style="text-align: center;" (click)="godao()">
+      <ion-label>参与签到</ion-label>
+    </ion-item>
+  </ion-card>
+  
+  <ion-list>
+    <ion-item >
+      <ion-label>历史签到记录</ion-label>
+      <ion-label  >80%</ion-label>
+    </ion-item> 
+    <ion-item> 
+      <ion-label> 
+       <h3>2020/12/12-09:33 </h3> 
+       <p>手势签到 星期六</p>
+      </ion-label>   
+      <ion-label> 
+        <p>已签到</p>
+       </ion-label> 
+    </ion-item>
+    
+    <ion-item> 
+      <ion-label> 
+       <h3>2020/12/12-09:33 </h3> 
+       <p>手势签到 星期六</p>
+      </ion-label>   
+      <ion-label> 
+        <p>已签到</p>
+       </ion-label> 
+    </ion-item>
+    <ion-item> 
+      <ion-label> 
+       <h3>2020/12/12-09:33 </h3> 
+       <p>手势签到 星期六</p>
+      </ion-label>   
+      <ion-label> 
+        <p>已签到</p>
+       </ion-label> 
+    </ion-item>
+    <ion-item> 
+      <ion-label> 
+       <h3>2020/12/12-09:33 </h3> 
+       <p>手势签到 星期六</p>
+      </ion-label>   
+      <ion-label> 
+        <p>已签到</p>
+       </ion-label> 
+    </ion-item>
+    <ion-item> 
+      <ion-label> 
+       <h3>2020/12/12-09:33 </h3> 
+       <p>手势签到 星期六</p>
+      </ion-label>   
+      <ion-label> 
+        <p>已签到</p>
+       </ion-label> 
+    </ion-item>
+    <ion-item> 
+      <ion-label> 
+       <h3>2020/12/12-09:33 </h3> 
+       <p>手势签到 星期六</p>
+      </ion-label>   
+      <ion-label> 
+        <p>已签到</p>
+       </ion-label> 
+    </ion-item>
+    <ion-item> 
+      <ion-label> 
+       <h3>2020/12/12-09:33 </h3> 
+       <p>手势签到 星期六</p>
+      </ion-label>   
+      <ion-label> 
+        <p>已签到</p>
+       </ion-label> 
+    </ion-item>
+  
+    <ion-item> 
+      <ion-label> 
+       <h3>2020/12/12-09:33 </h3> 
+       <p>手势签到 星期六</p>
+      </ion-label>   
+      <ion-label> 
+        <p>已签到</p>
+       </ion-label> 
+    </ion-item>
+    <ion-item> 
+      <ion-label> 
+       <h3>2020/12/12-09:33 </h3> 
+       <p>手势签到 星期六</p>
+      </ion-label>   
+      <ion-label> 
+        <p>已签到</p>
+       </ion-label> 
+    </ion-item>
+   
+  </ion-list>
+</ion-content>
+<ion-content *ngIf="dao==1">
+  <ion-button (click)="dodao()"  shape="round">
+   签到
+  </ion-button>
+</ion-content>

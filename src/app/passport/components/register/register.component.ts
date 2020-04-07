@@ -25,17 +25,18 @@ export class RegisterComponent implements OnInit {
   }  
   public timelimit:any=60;
   public flag:any = true;
+  public nums:any=1; 
   constructor(public ref : ChangeDetectorRef,public httpclient:HttpserviceService) { }
 
   ngOnInit() {
     console.log(this.verimage)
-    document.getElementById('vericode').src=this.verimage;
+    document.getElementById('vericode').setAttribute('src',this.verimage+'?'+this.nums);
+    this.nums++;
   }
-  public nums:any=1;//['1','2','3','4','5','6','7','8','9','a','b','c']
  
   newcode()
   {  
-    document.getElementById('vericode').src=this.verimage+'?'+this.nums;
+    document.getElementById('vericode').setAttribute('src',this.verimage+'?'+this.nums);
     this.nums++;
   }
   usermsg()

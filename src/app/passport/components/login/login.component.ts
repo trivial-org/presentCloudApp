@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
   }
   //不能再onInit里面初始化  因为img实在ngif判断后加入页面的
   ngAfterViewInit(){
-    document.getElementById('vericode').src='http://47.95.120.250:8080/verification/code'
+    
+    document.getElementById('vericode').setAttribute('src',this.verimage+'?'+this.nums);
+    this.nums++;
   }
 
 
@@ -81,7 +83,8 @@ export class LoginComponent implements OnInit {
 
   newcode()
   {  
-    document.getElementById('vericode').src=this.verimage+'?'+this.nums;
+    document.getElementById('vericode').setAttribute('src',this.verimage+'?'+this.nums);
+    //document.getElementById('vericode').src=this.verimage+'?'+this.nums;
     this.nums++;
   }
   //清空数据

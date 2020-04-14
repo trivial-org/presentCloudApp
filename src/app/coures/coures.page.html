@@ -23,35 +23,16 @@
 
   
   <ion-list *ngIf="type==2">
-    <ion-item (click)="coursedetail()">
-      <ion-avatar slot="start">
+    <ion-item  *ngFor="let item of addlist"  (click)="coursedetail()" ><!--用href的话 动态可能就要动态拼接url了-->
+      <ion-avatar slot="start" >
         <img src="../../assets/icon/favicon.png">
       </ion-avatar>
       <ion-label>
-        <h2>工程实践</h2>
-        <h3>池老师</h3>
-        <p>2019级 </p>
+        <h2>{{item.cloudClass.className}}</h2>
+        <h3>{{item.cloudClass.teacherName}}</h3>
+        <p>{{item.cloudClass.grade}}</p>
       </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-avatar slot="start">
-        <img src="../../assets/icon/favicon.png">
-      </ion-avatar>
-      <ion-label>
-        <h2>机器学习</h2>
-        <h3>张老师</h3>
-        <p>2019级 </p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-avatar slot="start">
-        <img src="../../assets/icon/favicon.png">
-      </ion-avatar>
-      <ion-label>
-        <h2>图像处理</h2>
-        <h3>林老师</h3>
-        <p>2019级 </p>
-      </ion-label>
-    </ion-item>
+    </ion-item> 
+   
   </ion-list>
 </ion-content>  

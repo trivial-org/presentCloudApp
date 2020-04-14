@@ -15,7 +15,9 @@ export class CouresPage implements OnInit {
   public type:any=1;
   public getcreatecourseapi:any='/user/createdClass';
   public getaddcourseapi:any='/user/joinedClass';
+  public getmyentercourseapi:any='/user/joinedClass';
   public createlist:any=[];
+  public addlist:any=[];
   constructor(public httpclient:HttpserviceService,public modalController: ModalController,public popoverController: PopoverController,public navCtrl: NavController ) {
 
   }
@@ -26,6 +28,10 @@ export class CouresPage implements OnInit {
     this.httpclient.get(this.getcreatecourseapi).then((response)=>{
       this.createlist=response['result']
       console.log(this.createlist);
+    })
+    this.httpclient.get(this.getmyentercourseapi).then((response)=>{
+      this.addlist=response['result']
+      console.log(response);
     })
   }
   typechang(type:any)

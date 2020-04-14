@@ -1,27 +1,30 @@
-<ion-header>
+<ion-header > 
   <ion-toolbar>
-    <ion-title>签到</ion-title>
+    <ion-buttons slot="start" *ngIf="type==1">
+      <ion-back-button>返回</ion-back-button>
+    </ion-buttons>
+    <ion-title>签到记录</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content *ngIf="dao==0">
+<ion-content *ngIf="type==0">
   <ion-card style="text-align: center;">
     <ion-item style="text-align: center;" (click)="godao()">
-      <ion-label>参与签到</ion-label>
+      <ion-label>发起签到</ion-label>
     </ion-item>
   </ion-card>
   
-  <ion-list>
+  <ion-list *ngIf="type==0">
     <ion-item >
       <ion-label>历史签到记录</ion-label>
-      <ion-label  >80%</ion-label>
+      <ion-label  >13次</ion-label>
     </ion-item> 
-    <ion-item> 
+    <ion-item (click)="recordetail()"> 
       <ion-label> 
        <h3>2020/12/12-09:33 </h3> 
        <p>手势签到 星期六</p>
       </ion-label>   
       <ion-label> 
-        <p>已签到</p>
+        <p>44/50</p>
        </ion-label> 
     </ion-item>
     
@@ -31,7 +34,7 @@
        <p>手势签到 星期六</p>
       </ion-label>   
       <ion-label> 
-        <p>已签到</p>
+        <p>44/50</p>
        </ion-label> 
     </ion-item>
     <ion-item> 
@@ -40,7 +43,7 @@
        <p>手势签到 星期六</p>
       </ion-label>   
       <ion-label> 
-        <p>已签到</p>
+        <p>45/50</p>
        </ion-label> 
     </ion-item>
     <ion-item> 
@@ -49,7 +52,7 @@
        <p>手势签到 星期六</p>
       </ion-label>   
       <ion-label> 
-        <p>已签到</p>
+        <p>46/50</p>
        </ion-label> 
     </ion-item>
     <ion-item> 
@@ -58,7 +61,7 @@
        <p>手势签到 星期六</p>
       </ion-label>   
       <ion-label> 
-        <p>已签到</p>
+        <p>49/50</p>
        </ion-label> 
     </ion-item>
     <ion-item> 
@@ -67,7 +70,7 @@
        <p>手势签到 星期六</p>
       </ion-label>   
       <ion-label> 
-        <p>已签到</p>
+        <p>50/50</p>
        </ion-label> 
     </ion-item>
     <ion-item> 
@@ -76,7 +79,7 @@
        <p>手势签到 星期六</p>
       </ion-label>   
       <ion-label> 
-        <p>已签到</p>
+        <p>50/50</p>
        </ion-label> 
     </ion-item>
   
@@ -86,7 +89,7 @@
        <p>手势签到 星期六</p>
       </ion-label>   
       <ion-label> 
-        <p>已签到</p>
+        <p>44/50</p>
        </ion-label> 
     </ion-item>
     <ion-item> 
@@ -95,14 +98,109 @@
        <p>手势签到 星期六</p>
       </ion-label>   
       <ion-label> 
-        <p>已签到</p>
-       </ion-label> 
+        <p>44/50</p>
+       </ion-label>  
     </ion-item>
    
   </ion-list>
 </ion-content>
-<ion-content *ngIf="dao==1">
-  <ion-button (click)="dodao()"  shape="round">
-   签到
-  </ion-button>
+<ion-content *ngIf="type==1">
+  <ion-card style="text-align: center;">
+    <ion-item style="text-align: center;" (click)="godao()">
+      <ion-label>
+        <h3>2020/12/12-09:33 </h3> 
+        <p>手势签到 星期六</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+  <ion-list> 
+  <ion-item color="secondary">
+    <ion-label>缺勤记录</ion-label>
+    <ion-label  >6/50</ion-label>
+  </ion-item> 
+  <ion-item > 
+    <ion-label> 
+     吴同学
+    </ion-label>    
+    <ion-select value="迟到"   placeholder="Select Pizza">
+      <ion-select-option value="迟到">迟到</ion-select-option>
+      <ion-select-option value="请假">请假</ion-select-option>
+      <ion-select-option value="旷课">旷课</ion-select-option>
+      <ion-select-option value="成功签到">成功签到</ion-select-option>
+    </ion-select> 
+  </ion-item>
+  <ion-item > 
+    <ion-label> 
+     吴小李
+    </ion-label>    
+    <ion-select value="迟到"   placeholder="Select Pizza">
+      <ion-select-option value="迟到">迟到</ion-select-option>
+      <ion-select-option value="请假">请假</ion-select-option>
+      <ion-select-option value="旷课">旷课</ion-select-option>
+      <ion-select-option value="成功签到">成功签到</ion-select-option>
+    </ion-select> 
+  </ion-item>
+  <ion-item > 
+    <ion-label> 
+     阿牛
+    </ion-label>    
+    <ion-select value="迟到"   placeholder="Select Pizza">
+      <ion-select-option value="迟到">迟到</ion-select-option>
+      <ion-select-option value="请假">请假</ion-select-option>
+      <ion-select-option value="旷课">旷课</ion-select-option>
+      <ion-select-option value="成功签到">成功签到</ion-select-option>
+    </ion-select> 
+  </ion-item>
+  <ion-item > 
+    <ion-label> 
+     林飞飞
+    </ion-label>    
+    <ion-select value="迟到" placeholder="Select Pizza">
+      <ion-select-option value="迟到">迟到</ion-select-option>
+      <ion-select-option value="请假">请假</ion-select-option>
+      <ion-select-option value="旷课">旷课</ion-select-option>
+      <ion-select-option value="成功签到">成功签到</ion-select-option>
+    </ion-select> 
+  </ion-item>
+  
+  <ion-item color="secondary">
+    <ion-label>成功签到</ion-label>
+    <ion-label  >44/50</ion-label>
+  </ion-item> 
+  <ion-item > 
+    <ion-label> 
+     梁飞飞
+    </ion-label>    
+    <ion-select value="成功签到" placeholder="Select Pizza">
+      <ion-select-option value="迟到">迟到</ion-select-option>
+      <ion-select-option value="请假">请假</ion-select-option>
+      <ion-select-option value="旷课">旷课</ion-select-option>
+      <ion-select-option value="成功签到">成功签到</ion-select-option>
+    </ion-select> 
+  </ion-item>
+  <ion-item > 
+    <ion-label> 
+     小飞飞
+    </ion-label>    
+    <ion-select value="成功签到" placeholder="Select Pizza">
+      <ion-select-option value="迟到">迟到</ion-select-option>
+      <ion-select-option value="请假">请假</ion-select-option>
+      <ion-select-option value="旷课">旷课</ion-select-option>
+      <ion-select-option value="成功签到">成功签到</ion-select-option>
+    </ion-select> 
+  </ion-item>
+  
+  <ion-item > 
+    <ion-label> 
+     大飞飞
+    </ion-label>    
+    <ion-select value="成功签到" placeholder="Select Pizza">
+      <ion-select-option value="迟到">迟到</ion-select-option>
+      <ion-select-option value="请假">请假</ion-select-option>
+      <ion-select-option value="旷课">旷课</ion-select-option>
+      <ion-select-option value="成功签到">成功签到</ion-select-option>
+    </ion-select> 
+  </ion-item>
+
+</ion-list>
 </ion-content>

@@ -7,8 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursemsgComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {}
-
+  public type:any=0;
+  constructor() { } 
+  ngOnInit() {} 
+  edit(type:any){
+    this.type=type;
+    if(type==2)
+    {
+      //提交编辑数据
+      //修改状态
+      this.type=0;
+    }
+  } 
+  del(courseid:any)
+  {
+    //删除班课
+  } 
 }

@@ -1,3 +1,46 @@
-<p>
-  coursemsg works!
-</p>
+ 
+<ion-content>
+  <ion-list class="inp" style="margin-top:30px auto;">
+    <ion-item padding >
+      <ion-label>课程名</ion-label>
+      <ion-input type="text"  readonly  ></ion-input>  
+    </ion-item> 
+     <ion-item padding  >
+      <ion-label>班课号</ion-label>
+      <ion-input type="text"  readonly ></ion-input>  
+    </ion-item> 
+    <ion-item padding >
+      <ion-label>教师</ion-label>
+      <ion-input type="text" readonly ></ion-input> 
+    </ion-item>  
+    <ion-item padding >
+      <ion-label>年级</ion-label>
+      <ion-datetime displayFormat="YYYY"  readonly min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
+     </ion-item>
+    <ion-item padding >
+      <ion-label>教材</ion-label>
+      <ion-input type="text" readonly [(ngModel)]="user.phone" *ngIf="type==0"></ion-input> 
+   
+    </ion-item>
+    <ion-item padding   >
+      <ion-label>学校-院系</ion-label> 
+    </ion-item> 
+    <ion-item padding >
+      <ion-label>开课时间</ion-label>
+      <ion-datetime displayFormat="YYYY/MM/DD"  readonly min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
+    </ion-item>
+    <ion-item padding >
+      <ion-label>结课时间</ion-label>
+      <ion-datetime displayFormat="YYYY/MM/DD"   readonly min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
+    </ion-item>
+    <ion-item padding >
+      <ion-label>介绍</ion-label>
+      <ion-textarea readonly  ></ion-textarea>  
+    </ion-item> 
+  </ion-list>
+  <ion-button (click)="goout('课程号')"   color="primary" expand="block" style="height:40px;width:60%;margin:40px auto;font-size:20px"  shape="round">
+    退出班课
+  </ion-button>  
+
+</ion-content> 
+

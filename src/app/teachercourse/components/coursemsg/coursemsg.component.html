@@ -1,3 +1,59 @@
-<p>
-  coursemsg works!
-</p>
+ 
+<ion-content>
+    <ion-list class="inp" style="margin-top:30px auto;">
+      <ion-item padding >
+        <ion-label>课程名</ion-label>
+        <ion-input type="text"  readonly *ngIf="type==0" ></ion-input> 
+        <ion-input type="text"  *ngIf="type==1"  ></ion-input>
+      </ion-item> 
+       <ion-item padding *ngIf="type==0" >
+        <ion-label>班课号</ion-label>
+        <ion-input type="text"  readonly ></ion-input>  
+      </ion-item> 
+      <ion-item padding >
+        <ion-label>教师</ion-label>
+        <ion-input type="text" readonly *ngIf="type==0"></ion-input>
+        <ion-input type="text"  *ngIf="type==1"></ion-input>
+      </ion-item>  
+      <ion-item padding >
+        <ion-label>年级</ion-label>
+        <ion-datetime displayFormat="YYYY" *ngIf="type==0" readonly min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
+        <ion-datetime displayFormat="YYYY" *ngIf="type==1" min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
+      </ion-item>
+      <ion-item padding >
+        <ion-label>教材</ion-label>
+        <ion-input type="text" readonly [(ngModel)]="user.phone" *ngIf="type==0"></ion-input>
+        <ion-input type="text"  *ngIf="type==1" [(ngModel)]="user.phone"></ion-input>
+     
+      </ion-item>
+      <ion-item padding  (click)="presentPopover()">
+        <ion-label>学校-院系</ion-label> 
+      </ion-item> 
+      <ion-item padding >
+        <ion-label>开课时间</ion-label>
+        <ion-datetime displayFormat="YYYY/MM/DD" *ngIf="type==0" readonly min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
+        <ion-datetime displayFormat="YYYY/MM/DD" *ngIf="type==1" min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
+      </ion-item>
+      <ion-item padding >
+        <ion-label>结课时间</ion-label>
+        <ion-datetime displayFormat="YYYY/MM/DD"  *ngIf="type==0" readonly min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
+        <ion-datetime displayFormat="YYYY/MM/DD" *ngIf="type==1" min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
+      </ion-item>
+      <ion-item padding >
+        <ion-label>介绍</ion-label>
+        <ion-textarea readonly *ngIf="type==0"></ion-textarea> 
+        <ion-textarea *ngIf="type==1"></ion-textarea>
+      </ion-item> 
+    </ion-list>
+    <ion-button (click)="edit(1)" *ngIf="type==0" color="primary" expand="block" style="height:40px;width:60%;margin:40px auto;font-size:20px"  shape="round">
+      修改
+    </ion-button> 
+    <ion-button (click)="edit(2)" *ngIf="type==1" color="primary" expand="block" style="height:40px;width:60%;margin:40px auto;font-size:20px"  shape="round">
+      保存
+    </ion-button> 
+     <ion-button (click)="del('班课号')" *ngIf="type==0" color="primary" expand="block" style="height:40px;width:60%;margin:40px auto;font-size:20px"  shape="round">
+      删除班课
+    </ion-button> 
+
+</ion-content> 
+

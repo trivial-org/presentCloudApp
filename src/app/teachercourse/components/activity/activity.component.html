@@ -1,8 +1,50 @@
-<ion-segment   [(ngModel)]="show">
+<!-- <ion-segment   [(ngModel)]="show">
   <ion-segment-button value="staff" (click)=" changetype(1)">
     <ion-label>公告</ion-label>
   </ion-segment-button>
   <ion-segment-button value="activity" (click)=" changetype(2)">
     <ion-label>活动</ion-label>
   </ion-segment-button> 
-</ion-segment>
+</ion-segment> -->
+<ion-content> 
+  <ion-item style="width:100%"><!--ngModelChange需要再绑定ngmodel的情况下才会触发-->
+    <ion-select value="全部"   style="float: left;width:50%" [(ngModel)]="type"  (ngModelChange)="update($event)"  >
+      <ion-select-option value="全部">全部</ion-select-option>
+      <ion-select-option value="进行中">进行中</ion-select-option> 
+      <ion-select-option value="已结束">已结束</ion-select-option>
+    </ion-select> 
+    <ion-button (click)="addactive()" style="float:right;width:20%;" shape="round">
+      +
+    </ion-button> 
+  </ion-item>
+  <ion-list>
+    <ion-item> 
+      <ion-label> 
+       <h3>活动名 </h3> 
+       <p>活动类型 活动时间</p>
+      </ion-label>    
+    </ion-item>
+    <ion-item  > 
+      <ion-label (click)="activedetail(1)"> 
+       <h3>需求报告填写</h3> 
+       <p>作业 2020-3-25</p>
+      </ion-label>    
+      <p style="padding-right: 20px;" (click)="delect(11)">修改</p>
+       <p style="padding-right: 20px;" (click)="delect(11)">删除</p>
+    </ion-item>
+    <ion-item> 
+      <ion-label> 
+       <h3>APP原型设计</h3> 
+       <p>作业 2020-3-30</p>
+      </ion-label>    
+      <p style="padding-right: 20px;">删除</p>
+    </ion-item>
+    <ion-item> 
+      <ion-label> 
+       <h3>数据库设计</h3> 
+       <p>作业 2020-4-4</p>
+      </ion-label>    
+      <p style="padding-right: 20px;">删除</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

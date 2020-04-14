@@ -1,7 +1,9 @@
 import { Component, OnInit,ChangeDetectionStrategy, ChangeDetectorRef,OnDestroy,Input,Output,EventEmitter} from '@angular/core';
 
 import { NavController , NavParams } from '@ionic/angular';
-import { HttpserviceService } from '../../../service/httpservice.service';
+import { HttpserviceService } from '../../../service/httpservice.service'; 
+
+import { UsermsgserviceService } from '../../../service/usermsgservice.service'; 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   @Output() public outer = new EventEmitter<any>();
  
+  public wrong:any=0;
   public timer:any;
   public tab = 'tab1';  
   public verimage=this.httpclient.ip+"/verification/code"; 
@@ -23,7 +26,7 @@ export class LoginComponent implements OnInit {
   }  
   public timelimit:any=60;
   public flag:any = true; 
-  constructor(public ref : ChangeDetectorRef,public httpclient:HttpserviceService,public navCtrl: NavController ) { }
+  constructor(public ref : ChangeDetectorRef,public usermsg:UsermsgserviceService,public httpclient:HttpserviceService,public navCtrl: NavController ) { }
 
   ngOnInit() {
     console.log(this.verimage)
@@ -47,14 +50,22 @@ export class LoginComponent implements OnInit {
   //登录
   login(type:any){ 
     //验证提交的数据
-
+    this.wrong=0;
     //提交数据
     this.httpclient.upData(this.loginapi,this.user).then((response)=>{
       //判断返回结果
-      //对跳转  附带参数
-      this.navCtrl.navigateForward('/tabs/coures');
+      if(response['state']=='success')
+      { 
+        //保存账号
+        this.usermsg.setaccount(this.user.userName) 
+        //对跳转  附带参数
+        this.navCtrl.navigateForward('/tabs/coures');
+      }else{
+        //提示登录信息错误
+        this.wrong=1;
+      }
       //错 根据返回信息进行提示
-    console.log(response);
+      console.log(response);
     })
     //提交
   }

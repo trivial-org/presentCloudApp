@@ -10,5 +10,7 @@ export class CoursemsgComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-
+  goout(courseid:any){
+    //退出班课 进入课程里列表页面
+  }
 }

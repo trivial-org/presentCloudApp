@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>返回还没做</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-item>
+  <ion-label>活动类型</ion-label>
+  <ion-select   [(ngModel)]="type"  >
+    <ion-select-option  value="公告" >公告</ion-select-option>  
+    <ion-select-option  value="作业" >作业</ion-select-option> 
+  </ion-select>
+</ion-item> 
+<ion-content *ngIf="type=='作业'">
+  <ion-item> 
+    <ion-label>作业名</ion-label>
+    <ion-input type="text" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>作业内容</ion-label>
+    <ion-textarea></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label>注意事项</ion-label>
+    <ion-textarea></ion-textarea>
+  </ion-item> 
+  <ion-item padding >
+    <ion-label>开始时间</ion-label>
+    <ion-datetime displayFormat="YYYY/MM/DD/hh" min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
+  </ion-item>
+  <ion-item padding >
+    <ion-label>结束时间</ion-label>
+    <ion-datetime displayFormat="YYYY/MM/DD/hh" min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
+  </ion-item>
+</ion-content>
+<ion-content *ngIf="type=='公告'">
+  <ion-item> 
+    <ion-label>公告名</ion-label>
+    <ion-input type="text" [(ngModel)]="client.clientName" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>公告内容</ion-label>
+    <ion-textarea></ion-textarea>
+  </ion-item> 
+</ion-content>
+<ion-button (click)="creatactive()" color="primary"  shape="round">
+ 创&nbsp;&nbsp;建
+</ion-button>
+<ion-button (click)="creatactive()" color="primary"  shape="round">
+ 取&nbsp;&nbsp;消
+</ion-button>

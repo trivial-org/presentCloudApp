@@ -3,7 +3,7 @@ import { Component, OnInit,ChangeDetectionStrategy, ChangeDetectorRef,OnDestroy,
 import { ModalController } from '@ionic/angular'; 
 import { PopoverController } from '@ionic/angular';
 import { AddcouresComponent } from './components/addcoures/addcoures.component';
-import {HttpClient} from '@angular/common/http'; 
+import { HttpserviceService } from '../service/httpservice.service';  
 import { NavController , NavParams } from '@ionic/angular';
 @Component({
   selector: 'app-coures',
@@ -13,13 +13,20 @@ import { NavController , NavParams } from '@ionic/angular';
 export class CouresPage implements OnInit {
   public currentPopover:any = null;
   public type:any=1;
-  constructor(public modalController: ModalController,public popoverController: PopoverController,public navCtrl: NavController ) {
+  public getcreatecourseapi:any='/user/createdClass';
+  public getaddcourseapi:any='/user/joinedClass';
+  public createlist:any=[];
+  constructor(public httpclient:HttpserviceService,public modalController: ModalController,public popoverController: PopoverController,public navCtrl: NavController ) {
 
   }
   public coures:any={
     id:11611
   }
   ngOnInit() {
+    this.httpclient.get(this.getcreatecourseapi).then((response)=>{
+      this.createlist=response['result']
+      console.log(this.createlist);
+    })
   }
   typechang(type:any)
   {

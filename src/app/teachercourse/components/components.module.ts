@@ -13,10 +13,14 @@ import { StafflistComponent } from './stafflist/stafflist.component';
 import { RecordComponent } from './record/record.component';
 
 import { StumsgComponent } from './stumsg/stumsg.component';
+
+import { AddactiveComponent } from './addactive/addactive.component';
+
+import { ActivedetailComponent } from './activedetail/activedetail.component';
 @NgModule({
-  declarations: [StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,StumsgComponent],
+  declarations: [StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,ActivedetailComponent,StumsgComponent,AddactiveComponent],
   imports: [CommonModule,FormsModule,RouterModule,IonicModule],
-  exports:[StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,StumsgComponent],
-  entryComponents:[RecordComponent,StumsgComponent]
+  exports:[StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,ActivedetailComponent,StumsgComponent,AddactiveComponent],
+  entryComponents:[RecordComponent,StumsgComponent,AddactiveComponent,ActivedetailComponent]
 })
 export class ComponentsModule { }

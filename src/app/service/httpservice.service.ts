@@ -27,12 +27,10 @@ export class HttpserviceService {
   //   }
 
   get(api:any)
-  {
+  { 
     let headers = new HttpHeaders({'Content-Type':'application/json'}) 
     return new Promise((resolve,reject)=>{
       this.http.get(this.ip+api,{withCredentials:true,headers:headers}).subscribe((response)=>{
-        console.log(11111) 
-        console.log(response)
         resolve(response);
       },(err)=>{
         reject(err);

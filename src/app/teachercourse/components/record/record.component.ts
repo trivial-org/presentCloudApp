@@ -9,12 +9,12 @@ export class RecordComponent implements OnInit {
 
   constructor() { }
 
-  public dao:any=0;
+  public type:any=0;
   ngOnInit() {}
-  godao()
+  recordetail()
   {
     //判断心啊子啊
-    this.dao=1;
+    this.type=1;
   }
   dodao()
   {

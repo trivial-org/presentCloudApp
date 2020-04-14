@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
   }  
   public timelimit:any=60;
   public flag:any = true;
-  public nums:any=1; 
+  public nums:any=5; 
   constructor(public ref : ChangeDetectorRef,public httpclient:HttpserviceService) { }
 
   ngOnInit() {

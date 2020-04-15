@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { AddcouresComponent } from './components/addcoures/addcoures.component';
 import { HttpserviceService } from '../service/httpservice.service';  
+import { UsermsgserviceService } from '../service/usermsgservice.service';  
 import { NavController , NavParams } from '@ionic/angular';
 @Component({
   selector: 'app-coures',
@@ -18,7 +19,7 @@ export class CouresPage implements OnInit {
   public getmyentercourseapi:any='/user/joinedClass';
   public createlist:any=[];
   public addlist:any=[];
-  constructor(public httpclient:HttpserviceService,public modalController: ModalController,public popoverController: PopoverController,public navCtrl: NavController ) {
+  constructor(public userserivce:UsermsgserviceService,public httpclient:HttpserviceService,public modalController: ModalController,public popoverController: PopoverController,public navCtrl: NavController ) {
 
   }
   public coures:any={
@@ -26,12 +27,22 @@ export class CouresPage implements OnInit {
   }
   ngOnInit() {
     this.httpclient.get(this.getcreatecourseapi).then((response)=>{
-      this.createlist=response['result']
+      this.createlist=response['result'] 
       console.log(this.createlist);
     })
     this.httpclient.get(this.getmyentercourseapi).then((response)=>{
       this.addlist=response['result']
-      console.log(response);
+      console.log(this.addlist);
+    })
+  }
+  ngAfterViewInit(){
+    this.httpclient.get(this.getcreatecourseapi).then((response)=>{
+      this.createlist=response['result'] 
+      console.log(this.createlist);
+    })
+    this.httpclient.get(this.getmyentercourseapi).then((response)=>{
+      this.addlist=response['result']
+      console.log(this.addlist);
     })
   }
   typechang(type:any)
@@ -67,11 +78,14 @@ export class CouresPage implements OnInit {
     })
   } 
 
-  goteacher()
+  goteacher(orgCode:any)
   {
+    console.log(orgCode)
+    this.userserivce.setorgCode(orgCode);
     this.navCtrl.navigateForward('/teachercourse');
   }
   coursedetail(){
+    //this.userserivce.setorgCode(orgCode);
     this.navCtrl.navigateForward('/coursemanage');
   } 
   // async coursedetail() {

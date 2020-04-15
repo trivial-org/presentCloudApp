@@ -46,7 +46,7 @@ export class CreadcourseComponent implements OnInit {
 
   createcourse()
   {
-    this.course['grade']=this.formatyear(this.course['grade'])+'年';
+    this.course['grade']=this.formatyear(this.course['grade']);
     this.course['lessonStartDate']=this.formatDate(this.course['lessonStartDate']);
     this.course['lessonEndDate']=this.formatDate(this.course['lessonEndDate']);
     

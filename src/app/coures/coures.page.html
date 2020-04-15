@@ -9,7 +9,7 @@
 <ion-content>
 
   <ion-list *ngIf="type==1" > 
-    <ion-item  *ngFor="let item of createlist"  (click)="goteacher()" ><!--用href的话 动态可能就要动态拼接url了-->
+    <ion-item  *ngFor="let item of createlist"  (click)="goteacher(item.orgCode)" ><!--用href的话 动态可能就要动态拼接url了-->
       <ion-avatar slot="start" >
         <img src="../../assets/icon/favicon.png">
       </ion-avatar>

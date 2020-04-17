@@ -10,7 +10,10 @@
       <ion-thumbnail slot="start">
         <img src="assets/p.png">
       </ion-thumbnail>
-      <ion-label>用户名</ion-label>
+      <ion-label>
+        <h2>{{username}}</h2>
+        <p>{{getusermsg.nickname}}</p>
+      </ion-label>
       <ion-icon slot="end" name="arrow-forward"></ion-icon>
     </ion-item>
     <ion-item [routerLink]="[ '/mine/setupaccount' ]">

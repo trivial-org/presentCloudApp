@@ -16,7 +16,7 @@ export class RecordComponent implements OnInit {
     //判断心啊子啊
     this.type=1;
   }
-  dodao()
+  godao()
   {
     //这里有签到方式
     console.log('签到成功');

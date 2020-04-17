@@ -8,5 +8,14 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-item  *ngFor="let item of addlist"  (click)="coursedetail()" ><!--用href的话 动态可能就要动态拼接url了-->
+    <ion-avatar slot="start" >
+      <img src="../../assets/icon/favicon.png">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{item.cloudClass.className}}</h2>
+      <h3>{{item.cloudClass.teacherName}}</h3>
+      <p>{{item.cloudClass.grade}}</p>
+    </ion-label>
+  </ion-item> 
 </ion-content>

@@ -16,10 +16,12 @@ import { StumsgComponent } from './stumsg/stumsg.component';
 
 import { AddactiveComponent } from './addactive/addactive.component';
 
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { ActivedetailComponent } from './activedetail/activedetail.component';
 @NgModule({
   declarations: [StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,ActivedetailComponent,StumsgComponent,AddactiveComponent],
   imports: [CommonModule,FormsModule,RouterModule,IonicModule],
+  providers:[FileChooser],
   exports:[StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,ActivedetailComponent,StumsgComponent,AddactiveComponent],
   entryComponents:[RecordComponent,StumsgComponent,AddactiveComponent,ActivedetailComponent]
 })

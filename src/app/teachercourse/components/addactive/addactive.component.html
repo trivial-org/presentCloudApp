@@ -31,11 +31,15 @@
     <ion-label>结束时间</ion-label>
     <ion-datetime displayFormat="YYYY/MM/DD/hh" min="2015-03-14" max="2030-12-09" value="2020-09-23T15:03:46.789"></ion-datetime>
   </ion-item>
+   <ion-item>
+    <ion-label (click)="upfile()">上传文件</ion-label>
+     
+  </ion-item> 
 </ion-content>
 <ion-content *ngIf="type=='公告'">
   <ion-item> 
     <ion-label>公告名</ion-label>
-    <ion-input type="text" [(ngModel)]="client.clientName" ></ion-input>
+    <ion-input type="text"  ></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>公告内容</ion-label>

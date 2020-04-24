@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-button size="large" fill="clear" color="success" expand="full">
+  <ion-button (click)="uploadepicture()" size="large" fill="clear" color="success" expand="full">
     <ion-thumbnail slot="start">
       <img src="assets/p.png">
     </ion-thumbnail>
@@ -26,13 +26,13 @@
     </ion-item>
     <ion-item>
       <ion-label>昵称</ion-label>
-      <ion-input type="text" style="text-align:right " slot="end" placeholder="昵称"
-        [(ngModel)]="user.nickname"></ion-input>
+      <ion-input type="text" style="text-align:right " slot="end" placeholder="昵称" [(ngModel)]="user.nickname">
+      </ion-input>
     </ion-item>
     <ion-item>
       <ion-label>生日</ion-label>
-      <ion-input type="text" style="text-align:right " slot="end" placeholder="生日日期"
-        [(ngModel)]="user.birthDate"></ion-input>
+      <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="user.birthDate" min="1900-01-01" max="2019-12-31">
+      </ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>学历</ion-label>
@@ -61,29 +61,29 @@
         </ion-row>
       </ion-grid>
     </ion-radio-group>
-    
+
     <ion-item-divider>
       <ion-label> 所属信息 </ion-label>
     </ion-item-divider>
     <ion-item>
       <ion-label>所属学校</ion-label>
-      <ion-input type="text" style="text-align:right " slot="end" placeholder="学校"
-        [(ngModel)]="user.school"></ion-input>
+      <ion-input type="text" style="text-align:right " slot="end" placeholder="学校" [(ngModel)]="user.school">
+      </ion-input>
     </ion-item>
     <ion-item>
       <ion-label>所属学院</ion-label>
-      <ion-input type="text" style="text-align:right " slot="end" placeholder="学院"
-        [(ngModel)]="user.college"></ion-input>
+      <ion-input type="text" style="text-align:right " slot="end" placeholder="学院" [(ngModel)]="user.college">
+      </ion-input>
     </ion-item>
     <ion-item>
       <ion-label>专业名</ion-label>
-      <ion-input type="text" style="text-align:right " slot="end" placeholder="专业名称"
-        [(ngModel)]="user.major"></ion-input>
+      <ion-input type="text" style="text-align:right " slot="end" placeholder="专业名称" [(ngModel)]="user.major">
+      </ion-input>
     </ion-item>
     <ion-item>
       <ion-label>学号/工号</ion-label>
-      <ion-input type="text" style="text-align:right " slot="end" placeholder="学号/工号"
-        [(ngModel)]="user.studentId"></ion-input>
+      <ion-input type="text" style="text-align:right " slot="end" placeholder="学号/工号" [(ngModel)]="user.studentId">
+      </ion-input>
     </ion-item>
     <ion-item-divider>
       <ion-label> 地址 </ion-label>
@@ -105,9 +105,9 @@
     </ion-item>
     <ion-item>
       <ion-label>详细地址</ion-label>
-      <ion-input type="text" style="text-align:right " slot="end" placeholder="地址"
-        [(ngModel)]="user.address"></ion-input>
+      <ion-input type="text" style="text-align:right " slot="end" placeholder="地址" [(ngModel)]="user.address">
+      </ion-input>
     </ion-item>
   </ion-list>
-  <ion-button (click)="save()" color="primary" expand="block"> 保存 </ion-button>
+  <ion-button (click)="presentAlertConfirm()" color="primary" expand="block"> 保存 </ion-button>
 </ion-content>

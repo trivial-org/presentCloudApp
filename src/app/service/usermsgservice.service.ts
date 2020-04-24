@@ -5,7 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class UsermsgserviceService {
 
-  private  account:any='';
+  private account:any='';
+  private email:any='';
+  private modify:any='';
   private orgCode:any='';
   setorgCode(orgCode:any){
     this.orgCode=orgCode; 
@@ -15,6 +17,13 @@ export class UsermsgserviceService {
   }
   setaccount(account:any){
     this.account=account; 
+  }
+  setmod(is:any)
+  {
+    this.modify=is;
+  }
+  getmod(){
+    return this.modify;
   }
   getaccount(){
     return this.account;

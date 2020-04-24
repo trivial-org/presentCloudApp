@@ -27,6 +27,10 @@ const routes: Routes = [
   {
     path: 'record',
     loadChildren: () => import('./pages/record/record.module').then( m => m.RecordPageModule)
+  },
+  {
+    path: 'gesture',
+    loadChildren: () => import('./pages/gesture/gesture.module').then( m => m.GesturePageModule)
   }
 ];
 

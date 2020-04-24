@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { UsermsgserviceService } from '../service/usermsgservice.service';
 import { HttpserviceService } from '../service/httpservice.service';
 import { NavController } from '@ionic/angular';
+import { ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-mine',
@@ -28,18 +29,30 @@ export class MinePage implements OnInit {
   }
   public username: any;
   ngOnInit() {
-    this.username = this.usermsg.getaccount();
+    /*this.username = this.usermsg.getaccount();
     this.httpclient.get(this.getusermsgapi).then((response) => {
       this.getusermsg = response['result']
       console.log(this.getusermsg);
-    })
+    })*/
   }
 
   ngAfterViewInit() {
-    this.username = this.usermsg.getaccount();
+    /*this.username = this.usermsg.getaccount();
+    this.httpclient.get(this.getusermsgapi).then((response) => {
+      this.getusermsg = response['result']
+      console.log(this.getusermsg);
+    })*/
+  }
+  ionViewWillEnter() {
+    if (this.usermsg.getmod() == "no") {
+    } else {
+      this.usermsg.setmod("no");
+      this.username = this.usermsg.getaccount();
     this.httpclient.get(this.getusermsgapi).then((response) => {
       this.getusermsg = response['result']
       console.log(this.getusermsg);
     })
+    }
+    
   }
 }

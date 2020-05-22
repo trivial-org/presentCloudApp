@@ -2,7 +2,8 @@ import { Component, OnInit,ChangeDetectionStrategy, ChangeDetectorRef,OnDestroy,
 
 import { NavController , NavParams } from '@ionic/angular';
 import { HttpserviceService } from '../../../service/httpservice.service'; 
-
+import { LocalStorageService } from '../../../service/local-storage.service'; 
+import {Md5} from 'ts-md5';
 import { UsermsgserviceService } from '../../../service/usermsgservice.service'; 
 @Component({
   selector: 'app-login',
@@ -20,13 +21,13 @@ export class LoginComponent implements OnInit {
   public loginapi='/signin'
   public nums:any=1; 
   public user:any={
-    userName:'',
+    username:'',
     password:'',
     verificationCode:''
   }  
   public timelimit:any=60;
   public flag:any = true; 
-  constructor(public ref : ChangeDetectorRef,public usermsg:UsermsgserviceService,public httpclient:HttpserviceService,public navCtrl: NavController ) { }
+  constructor(public localStorage:LocalStorageService, public ref : ChangeDetectorRef,public usermsg:UsermsgserviceService,public httpclient:HttpserviceService,public navCtrl: NavController ) { }
 
   ngOnInit() {
     console.log(this.verimage)
@@ -52,20 +53,24 @@ export class LoginComponent implements OnInit {
     //验证提交的数据
     this.wrong=0;
     //提交数据
+    this.user['password'] = Md5.hashStr(this.user["password"]).toString()
     this.httpclient.upData(this.loginapi,this.user).then((response)=>{
       //判断返回结果
       if(response['state']=='success')
-      { 
-        //保存账号
-        this.usermsg.setaccount(this.user.userName) 
+      {  
+      console.log(response);
+        //保存token
+        this.localStorage.set("token",response['result']['token'])
+        //保存userName
+        this.localStorage.set("userName",this.user['username'])
+        //保存userId
+        this.localStorage.set("userId",response['result']['id'])
         //对跳转  附带参数
         this.navCtrl.navigateForward('/tabs/coures');
       }else{
         //提示登录信息错误
         this.wrong=1;
       }
-      //错 根据返回信息进行提示
-      console.log(response);
     })
     //提交
   }

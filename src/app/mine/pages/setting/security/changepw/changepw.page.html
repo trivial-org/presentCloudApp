@@ -10,17 +10,17 @@
 <ion-content>
   <ion-list class="inp" style="margin-top:30px auto;">
     <ion-item padding >
-      <ion-input type="text" placeholder="请输入新密码" [(ngModel)]="user.password"></ion-input>
+      <ion-input type="text" placeholder="请输入旧密码" [(ngModel)]="user.oldpassword"></ion-input>
     </ion-item>
     <ion-item padding >
-      <ion-input type="text" placeholder="请再次输入密码" [(ngModel)]="user.password"></ion-input>
+      <ion-input type="text" placeholder="请输入新密码" [(ngModel)]="user.newpassword"></ion-input>
     </ion-item>
-     <ion-item>
+     <!-- <ion-item>
       <ion-input type="text" placeholder="请输入验证码" [(ngModel)]="user.verificationCode"></ion-input>
       <img id="vericode" />
-    </ion-item> 
+    </ion-item>  -->
   </ion-list>
-  <ion-button color="primary" expand="block" style="height:40px;width:60%;margin:40px auto;font-size:20px"  shape="round" [routerLink]="[ '/mine/setting' ]">
-    保&nbsp;&nbsp;存 
+  <ion-button color="primary" expand="block" (click)="changepw()" style="height:40px;width:60%;margin:40px auto;font-size:20px"  shape="round" [routerLink]="[ '/mine/setting' ]">
+    更&nbsp;&nbsp;改
   </ion-button>
 </ion-content>

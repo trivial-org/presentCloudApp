@@ -27,7 +27,7 @@
     <ion-item-divider>
       <ion-label> </ion-label>
     </ion-item-divider>
-    <ion-button color="danger" expand="full" fill="clear" size="large" [routerLink]="[ '/login' ]"> 退出当前账号 </ion-button>
+    <ion-button color="danger" expand="full" fill="clear" size="large" (click)="logout()"> 退出当前账号 </ion-button>
   </ion-list>
   
 </ion-content>

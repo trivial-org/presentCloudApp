@@ -1,6 +1,6 @@
 import { Component, OnInit,ChangeDetectionStrategy, ChangeDetectorRef,OnDestroy,Input,Output,EventEmitter} from '@angular/core';
 import { HttpserviceService } from '../../../service/httpservice.service';
-
+import {Md5} from 'ts-md5';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   public tab = 'tab1';  
   public mail:any='';
   public user:any={
-    userName:'',
+    username:'',
     password:'',
     email:'',
     mailVerificationCode:'',
@@ -49,7 +49,9 @@ export class RegisterComponent implements OnInit {
 
   register(){
     //提交数据 注册
-    console.log(this.user)
+    //加密用户数据
+    this.user['password'] = Md5.hashStr(this.user["password"]).toString()
+    console.log(this.user) 
     this.httpclient.upData(this.signupapi,this.user).then((response)=>{
       console.log(response)
       //注册完去登录  这里没提示 后面再优化体验

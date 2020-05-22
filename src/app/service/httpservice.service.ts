@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders, } from '@angular/common/http';
+
+import { LocalStorageService } from '../service/local-storage.service'; 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpserviceService {
 
   public ip:any = 'http://47.95.120.250:8080';//"http://localhost:8080"//"http://localhost:8080";
-  constructor(public http:HttpClient) { }
-  public headers:any = new HttpHeaders({'Content-Type':'application/json'})
-  upData(api:any,data:any){
-    let headers = new HttpHeaders({'Content-Type':'application/json'})
+  constructor(public localStorage:LocalStorageService,public http:HttpClient) { }
+  public headers:any = new HttpHeaders({
+    'myAuthorization':this.localStorage.get('token',"wrong"),
+    'Content-Type':'application/json'})
+  upData(api:any,data:any){ 
     return new Promise((resolve, reject) => {
-      this.http.post(this.ip+api, data,{withCredentials:true,headers:headers}).subscribe((response) => {
+      this.http.post(this.ip+api, data,{withCredentials:true,headers:this.headers}).subscribe((response) => {
         resolve(response);
       }, (error) => {
         reject(error);
@@ -41,10 +44,9 @@ export class HttpserviceService {
    })
   }
   get(api:any)
-  { 
-    let headers = new HttpHeaders({'Content-Type':'application/json'}) 
+  {  
     return new Promise((resolve,reject)=>{
-      this.http.get(this.ip+api,{withCredentials:true,headers:headers}).subscribe((response)=>{
+      this.http.get(this.ip+api,{withCredentials:true,headers:this.headers}).subscribe((response)=>{
         resolve(response);
       },(err)=>{
         reject(err);

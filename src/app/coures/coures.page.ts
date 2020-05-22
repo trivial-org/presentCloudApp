@@ -5,6 +5,7 @@ import { PopoverController } from '@ionic/angular';
 import { AddcouresComponent } from './components/addcoures/addcoures.component';
 import { HttpserviceService } from '../service/httpservice.service';  
 import { UsermsgserviceService } from '../service/usermsgservice.service';  
+import { LocalStorageService } from '../service/local-storage.service';
 import { NavController , NavParams } from '@ionic/angular';
 @Component({
   selector: 'app-coures',
@@ -12,6 +13,11 @@ import { NavController , NavParams } from '@ionic/angular';
   styleUrls: ['./coures.page.scss'],
 })
 export class CouresPage implements OnInit {
+  public role:any={
+    roleCode:'82112',
+    roleName:'晚上加的',
+    roleDescription:'字面意思'
+  }
   public currentPopover:any = null;
   public type:any=1;
   public getcreatecourseapi:any='/user/createdClass';
@@ -19,13 +25,14 @@ export class CouresPage implements OnInit {
   public getmyentercourseapi:any='/user/joinedClass';
   public createlist:any=[];
   public addlist:any=[];
-  constructor(public userserivce:UsermsgserviceService,public httpclient:HttpserviceService,public modalController: ModalController,public popoverController: PopoverController,public navCtrl: NavController ) {
+  constructor(public localStorageService:LocalStorageService,public userserivce:UsermsgserviceService,public httpclient:HttpserviceService,public modalController: ModalController,public popoverController: PopoverController,public navCtrl: NavController ) {
 
   }
   public coures:any={
     id:11611
   }
   ngOnInit() {
+    console.log(this.localStorageService.get('token',null));
     this.httpclient.get(this.getcreatecourseapi).then((response)=>{
       this.createlist=response['result'] 
       console.log(this.createlist);
@@ -54,7 +61,13 @@ export class CouresPage implements OnInit {
     }
     else if(type==2)
     {
-      //获取我加入的课程
+      this.httpclient.upData('/role',this.role).then((response)=>{
+        console.log(response)
+        this.httpclient.get('/role?page=1&pageSize=10').then((response)=>{
+          console.log(response)
+        })
+      })
+      //获取我加入的课程 
     }
   }
   gocourse(id:any){

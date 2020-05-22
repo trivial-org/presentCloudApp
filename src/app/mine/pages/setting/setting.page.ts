@@ -19,13 +19,16 @@ export class SettingPage implements OnInit {
   //登出
   logout(){
     console.log({'userName':this.localStorageService.get('userName',null)})
-    this.httpclient.upData(this.logoutapi,{'userName':this.localStorageService.get('userName',null)}).then((response)=>{
+    this.httpclient.upData(this.logoutapi,{'username':this.localStorageService.get('userName',null)}).then((response)=>{
       console.log(response)
+      if(response['status']=='success'){
+          //删除token
+          this.localStorageService.remove("token");
+          //
+          this.navCtrl.navigateForward('/login');
+      }
     })
-    // //删除token
-    // this.localStorageService.remove("token");
-    // //
-    //  this.navCtrl.navigateForward('/login');
+    
   }
 
 }

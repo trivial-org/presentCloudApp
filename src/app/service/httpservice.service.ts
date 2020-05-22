@@ -13,6 +13,9 @@ export class HttpserviceService {
     'myAuthorization':this.localStorage.get('token',"wrong"),
     'Content-Type':'application/json'})
   upData(api:any,data:any){ 
+    this.headers= new HttpHeaders({
+      'myAuthorization':this.localStorage.get('token',"wrong"),
+      'Content-Type':'application/json'})
     return new Promise((resolve, reject) => {
       this.http.post(this.ip+api, data,{withCredentials:true,headers:this.headers}).subscribe((response) => {
         resolve(response);
@@ -25,6 +28,9 @@ export class HttpserviceService {
     this.ip = ip;
   } 
   put(api:any,data:any){
+    this.headers= new HttpHeaders({
+      'myAuthorization':this.localStorage.get('token',"wrong"),
+      'Content-Type':'application/json'})
     console.log(this.ip+api);
     return new Promise((resolve, reject) => {
       this.http.put(this.ip+api,data,{withCredentials:true,headers:this.headers}).subscribe((response) => {
@@ -35,6 +41,9 @@ export class HttpserviceService {
    })
   }
   delete(api:any){
+    this.headers= new HttpHeaders({
+      'myAuthorization':this.localStorage.get('token',"wrong"),
+      'Content-Type':'application/json'})
     return new Promise((resolve, reject) => {
       this.http.delete(this.ip+api,{withCredentials:true,headers:this.headers}).subscribe((response) => {
         resolve(response);
@@ -45,6 +54,9 @@ export class HttpserviceService {
   }
   get(api:any)
   {  
+    this.headers= new HttpHeaders({
+      'myAuthorization':this.localStorage.get('token',"wrong"),
+      'Content-Type':'application/json'})
     return new Promise((resolve,reject)=>{
       this.http.get(this.ip+api,{withCredentials:true,headers:this.headers}).subscribe((response)=>{
         resolve(response);

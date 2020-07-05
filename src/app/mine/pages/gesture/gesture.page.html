@@ -6,12 +6,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-item-divider>
-  </ion-item-divider>
-  <ion-item>
+  <ion-card>
     <div class="gestureLockBox">
       <div class="gestureTitle" text-center [ngStyle]="{'color':textColor}">{{titleMes}}</div>
-      <canvas #canvas [ngStyle]="{'height.px':height,'width.px':width}"></canvas>
+      <canvas #canvas [ngStyle]="{'height.px':height,'width.px':width}"></canvas> 
     </div>
-  </ion-item>
+  </ion-card>
 </ion-content>

@@ -22,13 +22,26 @@
         <ion-label>教材</ion-label>
         <ion-input type="text"  [(ngModel)]="course.teachingMateria"></ion-input>
       </ion-item>
-      <ion-item padding >
-        <ion-label>学校</ion-label>
-        <ion-input type="text"  [(ngModel)]="course.school"></ion-input>
+      <ion-item>
+        <ion-label>所属学校</ion-label>
+        <ion-select [(ngModel)]="course.school" (ngModelChange)="findsiid()">
+          <ion-select-option slot="end" *ngFor="let item of schoolslist" [value]="item.schoolName" >{{item.schoolName}}
+          </ion-select-option>
+        </ion-select>
       </ion-item>
-      <ion-item padding >
-        <ion-label>专业</ion-label>
-        <ion-input type="text"  [(ngModel)]="course.college"></ion-input>
+      <ion-item>
+        <ion-label>所属学院</ion-label>
+        <ion-select [(ngModel)]="college1" (ngModelChange)="findciid()">
+          <ion-select-option slot="end" *ngFor="let item of collegeslist" [value]="item.collegeName" >{{item.collegeName}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>专业名</ion-label>
+        <ion-select [(ngModel)]="course.college">
+          <ion-select-option slot="end" *ngFor="let item of majorslist" [value]="item.majorName" >{{item.majorName}}
+          </ion-select-option>
+        </ion-select>
       </ion-item>
       <!-- <ion-item padding  (click)="presentPopover()">
         <ion-label>学校-院系</ion-label>

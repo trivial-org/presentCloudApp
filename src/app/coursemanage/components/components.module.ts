@@ -9,14 +9,14 @@ import { ActivityComponent } from './activity/activity.component';
 
 import { CoursemsgComponent } from './coursemsg/coursemsg.component';
 import { StafflistComponent } from './stafflist/stafflist.component';
-
+import { GestureComponent } from './gesture/gesture.component';
 import { RecordComponent } from './record/record.component';
 
 import { StumsgComponent } from './stumsg/stumsg.component';
 @NgModule({
-  declarations: [StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,StumsgComponent],
+  declarations: [GestureComponent,StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,StumsgComponent],
   imports: [CommonModule,FormsModule,RouterModule,IonicModule],
-  exports:[StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,StumsgComponent],
-  entryComponents:[RecordComponent,StumsgComponent]
+  exports:[GestureComponent,StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,StumsgComponent],
+  entryComponents:[GestureComponent,RecordComponent,StumsgComponent]
 })
 export class ComponentsModule { }

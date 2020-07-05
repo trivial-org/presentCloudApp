@@ -5,28 +5,40 @@ import { Injectable } from '@angular/core';
 })
 export class UsermsgserviceService {
 
-  private account:any='';
-  private email:any='';
-  private modify:any='';
-  private orgCode:any='';
-  setorgCode(orgCode:any){
-    this.orgCode=orgCode; 
+  private account: any = '';
+  private orgcode: any = '';
+  private modify: any = '';
+  private userid: any = '';
+  private orgCode: any = '';
+  setorgCode(orgCode: any) {
+    this.orgCode = orgCode;
   }
-  getorgCode(){
+  getorgCode() {
     return this.orgCode;
   }
-  setaccount(account:any){
-    this.account=account; 
+  setaccount(account: any) {
+    this.account = account;
   }
-  setmod(is:any)
-  {
-    this.modify=is;
+  setmod(is: any) {
+    this.modify = is;
   }
-  getmod(){
+  getmod() {
     return this.modify;
   }
-  getaccount(){
+  setorg(org: any) {
+    this.orgcode = org;
+  }
+  getorg() {
+    return this.orgcode;
+  }
+  getaccount() {
     return this.account;
+  }
+  setuId(id: any) {
+    this.userid = id;
+  }
+  getuId() {
+    return this.userid;
   }
   constructor() { }
 }

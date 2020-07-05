@@ -5,4 +5,5 @@
 <app-register *ngIf="type==2" (outer)="runParent($event)"></app-register>
 <app-get-pass *ngIf="type==3"></app-get-pass>
 <app-reg-usermsg *ngIf="type==4" (outer)="runParent($event)"></app-reg-usermsg>
+<app-copyright [bottom]="'20px'"></app-copyright>
 </ion-content>

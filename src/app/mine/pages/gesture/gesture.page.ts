@@ -36,8 +36,8 @@ export class GestureAttemptObj {
 })
 export class GesturePage {
 
-  height = 320;
-  width = 320;
+  height = 350;
+  width = 350;
   chooseType = 3;
   devicePixelRatio: number; // 设备密度
   titleMes = "手势密码解锁";

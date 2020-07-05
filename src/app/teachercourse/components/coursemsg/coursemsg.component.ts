@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular'; 
 import { PopoverController } from '@ionic/angular'; 
 import { HttpserviceService } from '../../../service/httpservice.service';  
-
-import { AlertController } from '@ionic/angular';
-import { UsermsgserviceService } from '../../../service/usermsgservice.service';    
+ 
+import { LocalStorageService } from '../../../service/local-storage.service'; 
+import { AlertController } from '@ionic/angular';    
 import { NavController , NavParams } from '@ionic/angular';
 @Component({
   selector: 'app-coursemsg',
@@ -28,8 +28,8 @@ export class CoursemsgComponent implements OnInit {
   }
   public coursemsg:any;
   constructor(
-    public navCtrl: NavController,
-    public userservice:UsermsgserviceService,
+    public localstorage:LocalStorageService,
+    public navCtrl: NavController, 
     public httpservice:HttpserviceService,
     public modalController: ModalController,
     public popoverController: PopoverController,
@@ -45,7 +45,7 @@ export class CoursemsgComponent implements OnInit {
     return year + '-' + month + '-' + day;
   };
   ngOnInit() {
-    this.httpservice.get(this.coursemshapi+this.userservice.getorgCode()).then((response)=>{
+    this.httpservice.get(this.coursemshapi+this.localstorage.get('orgCode','xxx')).then((response)=>{
       console.log(response);
       if(response['state']=='success')
       {
@@ -64,7 +64,7 @@ export class CoursemsgComponent implements OnInit {
         this.coursemsg['classCloud']['lessonEndDate']=this.formatDate(this.coursemsg['classCloud']['lessonEndDate'])
       }
       //提交编辑数据
-      this.httpservice.put(this.coursemshapi+this.userservice.getorgCode(),this.coursemsg['classCloud']).then((response)=>{
+      this.httpservice.put(this.coursemshapi+this.localstorage.get('orgCode','xxx'),this.coursemsg['classCloud']).then((response)=>{
         if(response['state']=='success')
         { 
           this.type=0;
@@ -89,7 +89,7 @@ export class CoursemsgComponent implements OnInit {
         }, {
           text: '删除',
           handler: () => {
-            this.httpservice.delete(this.coursemshapi+this.userservice.getorgCode()).then((response)=>{
+            this.httpservice.delete(this.coursemshapi+this.localstorage.get('orgCode','xxx')).then((response)=>{
               if(response['state']=='success')
               {
                 // this.navCtrl.navigateForward('/tabs/coures');

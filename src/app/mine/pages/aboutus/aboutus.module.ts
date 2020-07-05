@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { AboutusPageRoutingModule } from './aboutus-routing.module';
-
+import { SharedModule } from '../../../shared/shared.module';
 import { AboutusPage } from './aboutus.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { AboutusPage } from './aboutus.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AboutusPageRoutingModule
+    AboutusPageRoutingModule,
+    SharedModule
   ],
   declarations: [AboutusPage]
 })

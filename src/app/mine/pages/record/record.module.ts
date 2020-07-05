@@ -8,6 +8,7 @@ import { RecordPageRoutingModule } from './record-routing.module';
 
 import { RecordPage } from './record.page';
 
+
 @NgModule({
   imports: [
     CommonModule,

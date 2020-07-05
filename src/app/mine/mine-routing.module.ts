@@ -31,7 +31,19 @@ const routes: Routes = [
   {
     path: 'gesture',
     loadChildren: () => import('./pages/gesture/gesture.module').then( m => m.GesturePageModule)
+  },  {
+    path: 'scoredetil',
+    loadChildren: () => import('./pages/scoredetil/scoredetil.module').then( m => m.ScoredetilPageModule)
+  },
+  {
+    path: 'recorddetil',
+    loadChildren: () => import('./pages/recorddetil/recorddetil.module').then( m => m.RecorddetilPageModule)
+  },
+  {
+    path: 'userag',
+    loadChildren: () => import('./pages/userag/userag.module').then( m => m.UseragPageModule)
   }
+
 ];
 
 @NgModule({

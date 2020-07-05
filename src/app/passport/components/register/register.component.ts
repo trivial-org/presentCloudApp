@@ -1,6 +1,6 @@
 import { Component, OnInit,ChangeDetectionStrategy, ChangeDetectorRef,OnDestroy,Input,Output,EventEmitter} from '@angular/core';
 import { HttpserviceService } from '../../../service/httpservice.service';
-import {Md5} from 'ts-md5';
+//import {Md5} from 'ts-md5';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
     username:'',
     password:'',
     email:'',
+    phone:'',
     mailVerificationCode:'',
     verificationCode:''
   }  
@@ -46,13 +47,15 @@ export class RegisterComponent implements OnInit {
     //跳转到填写信息页面
     this.outer.emit(4);
   }
-
+dismiss(){ 
+  this.outer.emit(1);
+}
   register(){
     //提交数据 注册
     //加密用户数据
-    this.user['password'] = Md5.hashStr(this.user["password"]).toString()
+   // this.user['password'] = Md5.hashStr(this.user["password"]).toString()
     console.log(this.user) 
-    this.httpclient.upData(this.signupapi,this.user).then((response)=>{
+    this.httpclient.upDatalogin(this.signupapi,this.user).then((response)=>{
       console.log(response)
       //注册完去登录  这里没提示 后面再优化体验
       //判断成功才可以跳去登录
@@ -75,12 +78,13 @@ export class RegisterComponent implements OnInit {
   }
   // 获取验证码
   get_check_code() {
-    this.httpclient.get(this.mailcodeapi+this.user['email']).then((response)=>{
+    this.httpclient.getNotoken(this.mailcodeapi+this.user['email']).then((response)=>{
        
     
     //let cookie =response.headers['Set-Cookie']
     console.log(response)
     })
+    
     //倒计时
     this.flag=false;
     this.timer = setInterval(()=>{
@@ -92,6 +96,12 @@ export class RegisterComponent implements OnInit {
         clearInterval(this.timer);
       }
       },1000)
+
+      // let c = setTimeout(function(){
+
+      //   console.log(2000)
+     
+      //   },2000)
     // this.dataService.getCaptchas().subscribe(res => {
     //   this.captchaCodeImg = res.code;
     // });

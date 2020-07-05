@@ -18,11 +18,22 @@
 </ion-tabs>
 
  -->
- <ion-header>
+ <ion-header > 
   <ion-toolbar>
-    <ion-title>返回还没做</ion-title>
+    <!-- <a [routerLink]="['/tabs/coures']"  style="text-decoration-line: none;" > 《返回 </a>  -->
+    <ion-title>{{orgName}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+ <!-- <ion-header>
+  <ion-toolbar>
+    
+    <ion-title><a [routerLink]="['/tabs/coures']"  style="text-decoration-line: none;"> 《返回 </a>课程信息</ion-title>
+  </ion-toolbar>
+</ion-header> -->
 <!-- Segment with default selection -->
 <!--有没有ion-content 查非常多 需要的-->
 <ion-content> 

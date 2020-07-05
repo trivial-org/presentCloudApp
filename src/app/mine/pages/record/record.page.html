@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-item  *ngFor="let item of addlist"  (click)="coursedetail()" ><!--用href的话 动态可能就要动态拼接url了-->
+  <ion-item  *ngFor="let item of addlist"  (click)="recorddetail(item.orgCode)" ><!--用href的话 动态可能就要动态拼接url了-->
     <ion-avatar slot="start" >
       <img src="../../assets/icon/favicon.png">
     </ion-avatar>
@@ -16,6 +16,9 @@
       <h2>{{item.cloudClass.className}}</h2>
       <h3>{{item.cloudClass.teacherName}}</h3>
       <p>{{item.cloudClass.grade}}</p>
+    </ion-label>
+    <ion-label style="text-align:right " slot="end">
+      <h2>{{item.s}}/{{item.l}}</h2>
     </ion-label>
   </ion-item> 
 </ion-content>

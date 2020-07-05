@@ -1,9 +1,12 @@
  
 <ion-header>
   <ion-toolbar>
-    <ion-title style="text-align: center;">加入班课</ion-title>
+    <ion-title  style=text-align:center>加入班课</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button>77</ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
-  </ion-header>
+</ion-header>
 
 <ion-list class="inp" *ngIf="type==1" >
   <ion-item>
@@ -30,9 +33,14 @@
       <ion-label>{{coursemsg.introduction}}</ion-label>
     </ion-item> 
 </ion-list>
-<ion-button (click)="nextadd()" *ngIf="type==1" color="primary" expand="block" style="height:30px;width:60%;margin:40px auto;font-size:17px"  shape="round">
+<ion-button (click)="nextadd()" *ngIf="type==1" color="primary" expand="block" style="height:30px;width:60%;margin:10px auto;font-size:17px"  shape="round">
   下&nbsp;&nbsp;一&nbsp;&nbsp;步
 </ion-button>
-<ion-button (click)="addcourse()" *ngIf="type==2" color="primary" expand="block" style="height:30px;width:60%;margin:40px auto;font-size:17px"  shape="round">
+<ion-button (click)="addcourse()" *ngIf="type==2" color="primary" expand="block" style="height:30px;width:60%;margin:5px auto;font-size:17px"  shape="round">
   确认加入
 </ion-button>
+<ion-button (click)="concel()"  color="primary" expand="block" style="height:30px;width:60%;margin:0 auto;font-size:17px"  shape="round">
+  取&nbsp;&nbsp;&nbsp;&nbsp;消
+</ion-button>
+
+

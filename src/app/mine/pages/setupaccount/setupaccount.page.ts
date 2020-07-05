@@ -15,7 +15,16 @@ export class SetupaccountPage implements OnInit {
   constructor(public toastController: ToastController, public ref: ChangeDetectorRef, public usermsg: UsermsgserviceService, public httpclient: HttpserviceService, public navCtrl: NavController, public actionsheetController: ActionSheetController, public alertController: AlertController) { }
   public getusermsgapi = '/user/info';
   public saveusermsgapi = '/user/info';
+  public getschoolsapi = '/structure/orgs/schools?page=1&pageSize=100';
+  public getcollegesapi = '/structure/orgs/colleges?schoolId=';
+  public getmajorsapi = '/structure/orgs/majors?collegeId=';
   public getusermsg: any = [];
+  public schoolslist: any = [];
+  public collegeslist: any = [];
+  public majorslist: any = [];
+  public picadd: any;
+  public schoolid: any;
+  public collegeid: any;
   public List: any = {
     eduList: ['小学', '初中', '高中', '中专', '大专', '本科', '研究生'],
   }
@@ -33,21 +42,90 @@ export class SetupaccountPage implements OnInit {
   }
   public username: any;
   ngOnInit() {
-    this.username = this.usermsg.getaccount();
+    this.user.school
     this.httpclient.get(this.getusermsgapi).then((response) => {
       this.getusermsg = response['result']
-      console.log(this.getusermsg);
-      this.user = this.getusermsg;
-      console.log(this.user)
+      this.user = this.getusermsg
+
+      if (this.getusermsg.gender == '男') {
+        this.picadd = "assets/image/M.png"
+      }
+      else if (this.getusermsg.gender == '女') {
+        this.picadd = "assets/image/F.png"
+      }
+      else {
+        this.picadd = "assets/image/Q.png"
+      }
+      if (this.getusermsg.school == undefined) {
+        console.log(66666);
+      } else {
+        this.httpclient.get(this.getschoolsapi).then((response) => {
+          this.schoolslist = response['result']
+          for (let n = 0; n < this.schoolslist.length; n++) {
+            if (this.schoolslist[n].schoolName == this.getusermsg.school) {
+              this.schoolid = this.schoolslist[n].id
+              break;
+            }
+          }
+          this.httpclient.get(this.getcollegesapi + this.schoolid + '&page=1&pageSize=100').then((response) => {
+            this.collegeslist = response['result']
+            for (let n = 0; n < this.collegeslist.length; n++) {
+              if (this.collegeslist[n].collegeName == this.getusermsg.college) {
+                this.collegeid = this.collegeslist[n].id
+                break;
+              }
+            }
+            this.httpclient.get(this.getmajorsapi + this.collegeid + '&page=1&pageSize=100').then((response) => {
+              this.majorslist = response['result']
+            })
+              ;
+          })
+        })
+      }
+
     })
   }
+
+  findsiid() {
+    this.user.college = ''
+    this.user.major = ''
+    for (let n = 0; n < this.schoolslist.length; n++) {
+      if (this.schoolslist[n].schoolName == this.user.school) {
+        this.schoolid = this.schoolslist[n].id
+        break;
+      }
+    }
+    this.httpclient.get(this.getcollegesapi + this.schoolid + '&page=1&pageSize=100').then((response) => {
+      this.collegeslist = response['result']
+      console.log(this.collegeslist);
+    })
+  }
+
+  findciid() {
+    this.user.major = ''
+    for (let n = 0; n < this.collegeslist.length; n++) {
+      if (this.collegeslist[n].collegeName == this.user.college) {
+        this.collegeid = this.collegeslist[n].id
+        break;
+      }
+    }
+    this.httpclient.get(this.getmajorsapi + this.collegeid + '&page=1&pageSize=100').then((response) => {
+      this.majorslist = response['result']
+      console.log(this.majorslist);
+    })
+  }
+  /*onFocus(){
+    this.httpclient.get(this.getcollegesapi).then((response) => {
+      this.schoolslist = response['result']
+      console.log(this.collegeslist);
+    })
+  }*/
   ngAfterViewInit() {
     this.username = this.usermsg.getaccount();
     this.httpclient.get(this.getusermsgapi).then((response) => {
       this.getusermsg = response['result']
       console.log(this.getusermsg);
       this.user = this.getusermsg;
-      console.log(this.user)
     })
   }
   async presentAlertConfirm() {
@@ -100,6 +178,14 @@ export class SetupaccountPage implements OnInit {
     const day: any = Dates.getDate() < 10 ? '0' + Dates.getDate() : Dates.getDate();
     return year + '-' + month + '-' + day;
   };
+  changepic() {
+    if (this.getusermsg.gender == '男') {
+      this.picadd = "assets/image/M.png"
+    }
+    else {
+      this.picadd = "assets/image/F.png"
+    }
+  }
   save() {
     this.user['birthDate'] = this.formatDate(this.user['birthDate']);
     console.log(this.user);

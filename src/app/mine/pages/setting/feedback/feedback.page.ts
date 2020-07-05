@@ -31,8 +31,10 @@ export class FeedbackPage implements OnInit {
     await alert.present();
   }
   public submit() {
-    this.user.time=new Date(new Date().getTime()+8*60*60*1000).toISOString();
+    this.user.fbinfo = ''
+    this.user.time = new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toISOString();
     console.log(this.user.time);
+
     this.presentAlert();
   }
 

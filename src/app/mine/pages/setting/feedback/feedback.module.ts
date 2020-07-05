@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { FeedbackPageRoutingModule } from './feedback-routing.module';
-
+import { SharedModule } from '../../../../shared/shared.module';
 import { FeedbackPage } from './feedback.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { FeedbackPage } from './feedback.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    FeedbackPageRoutingModule
+    FeedbackPageRoutingModule,
+    SharedModule
   ],
   declarations: [FeedbackPage]
 })

@@ -1,19 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="favorite">
     <ion-buttons slot="end">
-      <ion-button color="primary" [routerLink]="[ '/login' ]">跳过</ion-button>
+      <ion-button color="light" [hidden]="!showSkip" (click)="onSkip()">跳过</ion-button>
     </ion-buttons>
-    <ion-title>
-      WELCOME!
-    </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button color="primary" expand="block" [routerLink]="[ '/login' ]">开始使用</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+<ion-content no-padding color="favorite">
+  <ion-slides #slides pager="false" (ionSlideWillChange)="onSlideWillChange($event)">
+    <ion-slide>
+      <img src="./assets/image/1.png" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="./assets/image/2.png" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="./assets/image/3.png" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="./assets/image/4.png" alt="" (click)="onSkip()">
+    </ion-slide>
+  </ion-slides>
 </ion-content>

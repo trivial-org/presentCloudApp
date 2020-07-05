@@ -15,6 +15,7 @@ export class MinePage implements OnInit {
 
   public getusermsgapi = '/user/info';
   public getusermsg: any = [];
+  public picadd:any;
   public user: any = {
     nickname: '',
     gender: '',
@@ -27,18 +28,26 @@ export class MinePage implements OnInit {
     birthDate: '',
     address: '', city: '', province: '', nation: '',
   }
-  public username: any;
   ngOnInit() {
-    /*this.username = this.usermsg.getaccount();
     this.httpclient.get(this.getusermsgapi).then((response) => {
       this.getusermsg = response['result']
+      this.usermsg.setuId(this.getusermsg.id)
+      this.usermsg.setaccount(this.getusermsg.username)
+      if(this.getusermsg.gender == '男'){
+        this.picadd="assets/image/M.png"
+      }
+      else if(this.getusermsg.gender == '女'){
+        this.picadd="assets/image/F.png"
+      }
+      else{
+        this.picadd="assets/image/Q.png"
+      }
       console.log(this.getusermsg);
-    })*/
+    })
   }
 
   ngAfterViewInit() {
-    /*this.username = this.usermsg.getaccount();
-    this.httpclient.get(this.getusermsgapi).then((response) => {
+    /*this.httpclient.get(this.getusermsgapi).then((response) => {
       this.getusermsg = response['result']
       console.log(this.getusermsg);
     })*/
@@ -47,9 +56,17 @@ export class MinePage implements OnInit {
     if (this.usermsg.getmod() == "no") {
     } else {
       this.usermsg.setmod("no");
-      this.username = this.usermsg.getaccount();
     this.httpclient.get(this.getusermsgapi).then((response) => {
       this.getusermsg = response['result']
+      if(this.getusermsg.gender == '男'){
+        this.picadd="assets/image/M.png"
+      }
+      else if(this.getusermsg.gender == '女'){
+        this.picadd="assets/image/F.png"
+      }
+      else{
+        this.picadd="assets/image/Q.png"
+      }
       console.log(this.getusermsg);
     })
     }

@@ -3,7 +3,7 @@ import { Component, OnInit,ChangeDetectionStrategy, ChangeDetectorRef,OnDestroy,
 import { NavController , NavParams } from '@ionic/angular';
 import { HttpserviceService } from '../../../service/httpservice.service'; 
 import { LocalStorageService } from '../../../service/local-storage.service'; 
-import {Md5} from 'ts-md5';
+//import {Md5} from 'ts-md5';
 import { UsermsgserviceService } from '../../../service/usermsgservice.service'; 
 @Component({
   selector: 'app-login',
@@ -16,15 +16,19 @@ export class LoginComponent implements OnInit {
  
   public wrong:any=0;
   public timer:any;
-  public tab = 'tab1';  
+  public tab:any = 'tab1';  
   public verimage=this.httpclient.ip+"/verification/code"; 
   public loginapi='/signin'
   public nums:any=1; 
+  public verificationCode:any='';
   public user:any={
-    username:'',
-    password:'',
-    verificationCode:''
+    username:'hzqhzq111',//'b123456',
+    password:'123456'//123456',
   }  
+  public userPhone:any={
+    username:'',//'b123456',
+    password:'123456'//123456', 
+  } 
   public timelimit:any=60;
   public flag:any = true; 
   constructor(public localStorage:LocalStorageService, public ref : ChangeDetectorRef,public usermsg:UsermsgserviceService,public httpclient:HttpserviceService,public navCtrl: NavController ) { }
@@ -49,25 +53,43 @@ export class LoginComponent implements OnInit {
     this.outer.emit(3);
   }
   //登录
-  login(type:any){ 
+  public wrongMsg:any;
+  public logUser:any;
+  login(){ 
+    console.log(this.tab)
     //验证提交的数据
     this.wrong=0;
     //提交数据
-    this.user['password'] = Md5.hashStr(this.user["password"]).toString()
-    this.httpclient.upData(this.loginapi,this.user).then((response)=>{
+    if(this.tab=='tab2'){
+      this.logUser=this.userPhone
+    }
+    if(this.tab=='tab1'){
+      this.logUser=this.user;
+    }
+    this.logUser['verificationCode']=this.verificationCode;
+    console.log(this.logUser)
+   // this.user['password'] = Md5.hashStr(this.user["password"]).toString()
+    this.httpclient.upDataNotoken(this.loginapi,this.logUser).then((response)=>{
       //判断返回结果
+      console.log(response)
       if(response['state']=='success')
-      {  
+      {
       console.log(response);
         //保存token
         this.localStorage.set("token",response['result']['token'])
-        //保存userName
-        this.localStorage.set("userName",this.user['username'])
-        //保存userId
-        this.localStorage.set("userId",response['result']['id'])
+        //保存userName 需要改
+        this.localStorage.set("userName",response['result']['username'])
+        //保存userIdionic
+       this.localStorage.set("userId",response['result']['id'])
         //对跳转  附带参数
-        this.navCtrl.navigateForward('/tabs/coures');
+       this.navCtrl.navigateForward('/tabs/coures');
       }else{
+        if(response['msg']=='用户不存在或者密码错误'){
+          this.wrongMsg='密码错误'
+        }else{ 
+          this.wrongMsg=response['msg'].split(':')[1]
+        }
+        console.log(response)
         //提示登录信息错误
         this.wrong=1;
       }

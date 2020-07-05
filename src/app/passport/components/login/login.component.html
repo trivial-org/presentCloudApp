@@ -6,62 +6,50 @@
 <ion-content>
   <ion-segment  [(ngModel)]="tab">
     <ion-segment-button value="tab1" (click)="clear()">
-      <ion-label>密码登录</ion-label>
+      <ion-label>用户名登录</ion-label>
     </ion-segment-button>
     <ion-segment-button value="tab2" (click)="clear()">
-      <ion-label>验证码登录</ion-label>
+      <ion-label>手机登录</ion-label>
     </ion-segment-button>
-  </ion-segment>
+  </ion-segment> 
   <div [ngSwitch]="tab" style="margin:30px auto;">
     <div *ngSwitchCase="'tab1'">
       <ion-list class="inp" style="margin-top:30px auto;">
         <ion-item padding >
-          <ion-label>账号</ion-label>
+          <ion-label>用户名</ion-label>
           <ion-input type="text" placeholder="请输入账号" [(ngModel)]="user.username"></ion-input>
         </ion-item> 
         <ion-item>
           <ion-label>密码</ion-label>
           <ion-input type="password" placeholder="请输入密码" [(ngModel)]="user.password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input type="text" placeholder="请输入验证码" [(ngModel)]="user.verificationCode"></ion-input>
-          <img id="vericode" (click)="newcode()"/>
-        </ion-item> 
-        <div style="margin:8px auto;">
-          <a (click)="forgetPass()" style="float:left;width:20%;text-align: center;text-decoration: none;" >忘记密码</a>
-          <a (click)="register()"  style="float:right;width:20%;text-align: center;text-decoration: none;">注册</a>
-        </div>
+        </ion-item>  
       </ion-list>
-      <ion-button (click)="login(1)" color="primary" expand="block" style="height:40px;width:60%;margin:40px auto;font-size:20px"  shape="round">
-        登 &nbsp;&nbsp;&nbsp;录
-      </ion-button>
     </div>
   
     <div *ngSwitchCase="'tab2'">
       <ion-list class="inp" style="margin-top:30px auto;">
         <ion-item padding >
-          <ion-label>账号</ion-label>
-          <ion-input type="text" placeholder="请输入账号" [(ngModel)]="user.phone"></ion-input>
+          <ion-label>手机</ion-label>
+          <ion-input type="text" placeholder="请输入账号" [(ngModel)]="userPhone.username"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input type="password" placeholder="请输入验证码" [(ngModel)]="user.checkcode"></ion-input>
-          <ion-button (click)="get_check_code()" expand="block" style="height:30px" *ngIf="flag">
-            获取验证码
-          </ion-button>
-          <ion-button   expand="block"  color="success" style="height:30px" *ngIf="!flag" >
-            获取中,{{timelimit}}s
-          </ion-button>
-        </ion-item>
-      <div style="margin:8px auto;">
-        <a (click)="register()"  style="float:right;width:20%;text-align: center;text-decoration: none;">注册</a>
-      </div>
-    </ion-list>
-    <ion-button (click)="login(2)" color="primary" expand="block" style="height:40px;width:60%;margin:40px auto;font-size:20px"  shape="round">
-      登 &nbsp;&nbsp;&nbsp;录
-    </ion-button>
+          <ion-label>密码</ion-label>
+          <ion-input type="password"   [(ngModel)]="userPhone.password"></ion-input> 
+        </ion-item> 
+        </ion-list>
     </div>
-
+    <ion-item>
+      <ion-input type="text" placeholder="请输入验证码" [(ngModel)]="verificationCode"></ion-input>
+      <img id="vericode" (click)="newcode()"/>
+    </ion-item> 
+    <div style="margin:8px auto;">
+      <!-- <a (click)="forgetPass()" style="float:left;width:20%;text-align: center;text-decoration: none;" >忘记密码</a> -->
+      <a (click)="register()"  style="float:right;width:20%;text-align: center;text-decoration: none;">注册</a>
+    </div>
+  <ion-button (click)="login()" color="primary" expand="block" style="height:40px;width:60%;margin:40px auto;font-size:20px"  shape="round">
+    登 &nbsp;&nbsp;&nbsp;录
+  </ion-button>
   </div>
-      <p *ngIf="wrong==1" style="text-align: center;">登录信息错误</p>
+      <p *ngIf="wrong==1" style="text-align: center;">{{wrongMsg}}</p>
 </ion-content> 
 

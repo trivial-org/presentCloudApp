@@ -1,7 +1,18 @@
 import { NgModule } from '@angular/core';
+import { StartAppGuard } from './core/start-app.guard';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'welcome', 
+    pathMatch: 'full'
+  },
+  { path: 'welcome', loadChildren: './welcome/welcome.module#WelcomePageModule', canActivate: [StartAppGuard] },
+  {
+    path: '',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
   {
     path: 'mine',
     loadChildren: () => import('./mine/mine.module').then( m => m.MinePageModule)
@@ -9,10 +20,6 @@ const routes: Routes = [
   {
     path: 'coures',
     loadChildren: () => import('./coures/coures.module').then( m => m.CouresPageModule)
-  },
-  {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },
   {
     path: 'login',
@@ -25,6 +32,10 @@ const routes: Routes = [
   {
     path: 'teachercourse',
     loadChildren: () => import('./teachercourse/teachercourse.module').then( m => m.TeachercoursePageModule)
+  },
+  {
+    path: 'gesture',
+    loadChildren: () => import('./gesture/gesture.module').then( m => m.GesturePageModule)
   }
 ];
 @NgModule({

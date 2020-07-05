@@ -15,14 +15,14 @@ import { RecordComponent } from './record/record.component';
 import { StumsgComponent } from './stumsg/stumsg.component';
 
 import { AddactiveComponent } from './addactive/addactive.component';
-
+import { GestureComponent } from './gesture/gesture.component';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
-import { ActivedetailComponent } from './activedetail/activedetail.component';
+import { ActivedetailComponent } from './activedetail/activedetail.component'; 
 @NgModule({
-  declarations: [StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,ActivedetailComponent,StumsgComponent,AddactiveComponent],
+  declarations: [GestureComponent,StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,ActivedetailComponent,StumsgComponent,AddactiveComponent],
   imports: [CommonModule,FormsModule,RouterModule,IonicModule],
   providers:[FileChooser],
-  exports:[StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,ActivedetailComponent,StumsgComponent,AddactiveComponent],
-  entryComponents:[RecordComponent,StumsgComponent,AddactiveComponent,ActivedetailComponent]
+  exports:[GestureComponent,StafflistComponent,CoursemsgComponent,ActivityComponent,RecordComponent,ActivedetailComponent,StumsgComponent,AddactiveComponent],
+  entryComponents:[GestureComponent,RecordComponent,StumsgComponent,AddactiveComponent,ActivedetailComponent]
 })
 export class ComponentsModule { }

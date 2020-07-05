@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { NavController , NavParams } from '@ionic/angular'; 
 
+import { LocalStorageService } from '../../../service/local-storage.service';
 import { HttpserviceService } from '../../../service/httpservice.service';
 @Component({
   selector: 'app-couresnumber',
@@ -15,10 +16,27 @@ export class CouresnumberComponent implements OnInit {
   public couresnumbe:any='';
   public addcourseapi:any='/cloudClass?orgCode=';
   public enterclassapi:any='/cloudClass/members?orgCode='
-  constructor(public modalCtrl:ModalController,public httpservice:HttpserviceService) { }
+  constructor(public localStorageService:LocalStorageService,public modalCtrl:ModalController,public httpservice:HttpserviceService) { }
   public orgCode:any='';
   public coursemsg:any;
-  ngOnInit() {}
+  ngOnInit() {
+    //通过扫描进来的
+    if(this.localStorageService.get('scanText','xxx')!='xxx'){ 
+      this.type=2;
+      this.orgCode=this.localStorageService.get('scanText','xxx');
+      this.localStorageService.remove('scanText')
+      this.httpservice.get(this.addcourseapi+this.orgCode).then((response)=>{
+        console.log(response)
+        if(response['state']=='success')
+        {
+          this.coursemsg=response['result']['classCloud'];
+        }else{
+          //后面优化
+          alert('没有该课程');
+        }
+      })
+    }
+  }
   nextadd(){
     this.httpservice.get(this.addcourseapi+this.orgCode).then((response)=>{
       console.log(response)
@@ -36,18 +54,26 @@ export class CouresnumberComponent implements OnInit {
   } 
   addcourse(){
     this.httpservice.upData(this.enterclassapi+this.orgCode,'').then((response)=>{
+      console.log(response)
+      //alert(JSON.stringify(response))
       if(response['state']=='success')
       {
-
+        alert('成功添加')
          location.reload();
       }else{
+        alert(response['msg'].split(':'))[1]
         //后面优化
-        alert('出错');
+        //alert('出错');
+        
       }
     })
-    // this.modalCtrl.dismiss({
-    //   'dismissed': true
-    // })
+    
+  
   }
+  concel(){
+      this.modalCtrl.dismiss({
+      'dismissed': true
+    })
+    }
 } 
 

@@ -68,7 +68,8 @@ export class SettingPage implements OnInit {
   signout() {
     console.log(this.user)
     this.httpclient.upData(this.signoutapi, this.user).then((response) => {
-      this.localStorage.remove("token")
+      this.localStorage.remove("token") 
+      this.localStorage.clearAll()
       console.log(response)
       if (response['state'] == 'success') {
         this.presentToast_suc()

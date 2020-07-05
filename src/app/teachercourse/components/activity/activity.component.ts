@@ -139,7 +139,6 @@ export class ActivityComponent implements OnInit {
               if(respnse['result']!=undefined){
                stu['score']=respnse['result']['score']
               }  
-              
                this.stuCaseListPar.push(stu)
                console.log(stu)
             })

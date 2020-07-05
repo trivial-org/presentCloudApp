@@ -114,6 +114,7 @@ export class RecordComponent implements OnInit {
     })
     if(type==1)
     {
+      clearInterval(this.timer);
       this.httpclient.get(this.getRecord+this.localstorageService.get('orgCode','wrongxx')).then((response)=>{
         console.log(response) 
         this.arrivals=[]
@@ -203,7 +204,7 @@ export class RecordComponent implements OnInit {
       }
     //一键签到
     if(this.arrivetype==1){
-      //倒计时 
+      //倒计时  
     this.timer = setInterval(()=>{
       this.second++;
       if(this.second==60)

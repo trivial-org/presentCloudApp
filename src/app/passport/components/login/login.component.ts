@@ -22,12 +22,12 @@ export class LoginComponent implements OnInit {
   public nums:any=1; 
   public verificationCode:any='';
   public user:any={
-    username:'hzqhzq111',//'b123456',
-    password:'123456'//123456',
+    username:'',//'b123456',
+    password:''//123456',
   }  
   public userPhone:any={
     username:'',//'b123456',
-    password:'123456'//123456', 
+    password:''//123456', 
   } 
   public timelimit:any=60;
   public flag:any = true; 
@@ -82,6 +82,9 @@ export class LoginComponent implements OnInit {
         //保存userIdionic
        this.localStorage.set("userId",response['result']['id'])
         //对跳转  附带参数
+        // console.log(this.localStorage.get("token",'xxx'))
+        // this.localStorage.clearAll() 
+        // console.log(this.localStorage.get("token",'xxx'))
        this.navCtrl.navigateForward('/tabs/coures');
       }else{
         if(response['msg']=='用户不存在或者密码错误'){
@@ -121,9 +124,10 @@ export class LoginComponent implements OnInit {
 
   newcode()
   {  
-    document.getElementById('vericode').setAttribute('src',this.verimage+'?'+this.nums);
-    //document.getElementById('vericode').src=this.verimage+'?'+this.nums;
-    this.nums++;
+    let ranValue = 50 + Math.round(Math.random() * 1000);
+    console.log(ranValue)
+    document.getElementById('vericode').setAttribute('src',this.verimage+'?'+ranValue);
+    //document.getElementById('vericode').src=this.verimage+'?'+this.nums; 
   }
   //清空数据
   clear(){

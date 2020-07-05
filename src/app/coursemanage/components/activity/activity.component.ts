@@ -35,10 +35,6 @@ export class ActivityComponent implements OnInit {
         if(response['msg']=='查询成功')
         {
           for (let activity of response['result']) { 
-            //this.te
-            this.httpservice.get(this.getactivyScoreapi+"activityId="+activity['activityId']+'&userId='+activity['userId']).then((respnse)=>{
-               this.tmpScore =  respnse['result']['score'] 
-            })
             //2 表示作业
             if(activity['activityTypeId']==2){
   
@@ -46,7 +42,11 @@ export class ActivityComponent implements OnInit {
               {
                 //没参加
                 activity['type']=0
+                activity['score']=0
               }else{
+                this.httpservice.get(this.getactivyScoreapi+"activityId="+activity['activityId']+'&userId='+activity['userId']).then((respnse)=>{
+                  activity['score'] =  respnse['result']['score'] 
+                })
                 //参加
                 activity['type']=1
               }
@@ -91,6 +91,9 @@ export class ActivityComponent implements OnInit {
                     //没参加
                     activity['type']=0
                   }else{
+                    this.httpservice.get(this.getactivyScoreapi+"activityId="+activity['activityId']+'&userId='+activity['userId']).then((respnse)=>{
+                      activity['score'] =  respnse['result']['score'] 
+                    })
                     //参加
                     activity['type']=1
                   }
@@ -102,6 +105,9 @@ export class ActivityComponent implements OnInit {
             this.activitySize = this.arrList.length
           })
           this.type=0;
+        }
+        else{
+          alert('已经提交过，不可重复提交')
         }
       })
       console.log(this.activityMsg)

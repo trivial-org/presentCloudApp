@@ -32,11 +32,12 @@ export class ScorePage implements OnInit {
         this.addlist = response['result']
         for (let n = 0; n < this.addlist.length; n++) {
           for (let i = 0; i < this.scoreslist.length; i++){
-            if (this.addlist[n].orgCode == this.scoreslist[n].orgCode) {
-              this.addlist[n].sumScore = this.scoreslist[n].sumScore
+            if (this.addlist[n].orgCode == this.scoreslist[i].orgCode) {
+              this.addlist[n].sumScore = this.scoreslist[i].sumScore
             }
           }
         }
+        console.log(this.addlist)
       })
     })
     /*this.httpclient.get(this.getmyentercourseapi).then((response) => {

@@ -27,13 +27,18 @@ export class ActivityComponent implements OnInit {
     public getActivityapi:any='/activities/class/self?page=1&pageSize=1000&orgCode=';
     //public getRecordapi:any='/activities?orgCode='; 
     public arrList:any=[]
+    public tmpScore:any=0;
     ngOnInit() {
       this.httpservice.get(this.getActivityapi+this.localstorage.get('orgCode','xxx')).then((response)=>{
         console.log("有返回分数嘛？")
         console.log(response)
         if(response['msg']=='查询成功')
         {
-          for (let activity of response['result']) {
+          for (let activity of response['result']) { 
+            //this.te
+            this.httpservice.get(this.getactivyScoreapi+"activityId="+activity['activityId']+'&userId='+activity['userId']).then((respnse)=>{
+               this.tmpScore =  respnse['result']['score'] 
+            })
             //2 表示作业
             if(activity['activityTypeId']==2){
   
